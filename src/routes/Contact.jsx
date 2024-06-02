@@ -6,7 +6,7 @@ export function Contact() {
     <>
       <Title
         title="Contatos"
-        subtitle="Entre em contanto comigo caso tenha alguma dúvida"
+        subtitle="Entre em contato comigo caso tenha alguma dúvida"
       />
       <Contacts />
       <Warning />

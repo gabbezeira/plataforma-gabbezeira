@@ -13,7 +13,7 @@ export function Contacts() {
         target="_blank"
       >
         <img className="image" alt="email" src={Gmail} />
-        <p className="text">gabbezeira@gmail.com</p>
+        <p className="text">gabbezeira</p>
       </Link>
 
       <Link
