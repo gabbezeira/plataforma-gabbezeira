@@ -8,8 +8,8 @@ export function Error() {
       <Menu />
       <Banner />
       <Body>
-        <Title title="Erro 404" subtitle="A página não foi encontrada" />
         <Errors />
+        <Title title="Erro 404" subtitle="A página não foi encontrada" />
       </Body>
       <Footer />
     </>

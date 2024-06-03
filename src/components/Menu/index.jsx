@@ -1,6 +1,6 @@
 import { Container } from './styles'
 import { Link } from 'react-router-dom'
-import { LogIn } from 'lucide-react'
+import { User } from 'lucide-react'
 import Logo from '../../assets/Brand/logo.svg'
 
 export function Menu() {
@@ -24,8 +24,9 @@ export function Menu() {
         >
           Acessar Canal
         </Link>
-        <Link className="button login" to="/admin">
-          <LogIn className="icon" />
+        <Link className="button login" to="/Login">
+          <User className="icon" />
+          <p className="login-text">Entrar</p>
         </Link>
       </nav>
     </Container>

@@ -1,7 +1,7 @@
 import { Container } from './styles'
 import TutorialsItems from '../../mocks/tutorials-items.json'
 import { Items } from './Items'
-import { VideoNotFound } from '../'
+import { NotFound } from '../'
 
 export function Tutorials() {
   const videos = TutorialsItems
@@ -22,7 +22,7 @@ export function Tutorials() {
           </div>
         ))
       ) : (
-        <VideoNotFound
+        <NotFound
           NotFoundDescription="Não existem tutoriais cadastrados"
           NotFoundImage="video"
         />

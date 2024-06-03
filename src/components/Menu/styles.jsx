@@ -66,9 +66,10 @@ export const Container = styled.div`
     }
 
     .login {
-      padding: 0rem 0.5rem;
+      padding: 0rem 0.75rem;
       background-color: var(--primary-color-opacity);
       border: 0.0625rem solid var(--primary-color);
+      gap: 6px;
 
       &:hover {
         background-color: var(--primary-color);
@@ -108,6 +109,14 @@ export const Container = styled.div`
 
       .colored {
         display: none;
+      }
+
+      .login {
+        padding: 0rem 0.5rem;
+
+        .login-text {
+          display: none;
+        }
       }
     }
   }

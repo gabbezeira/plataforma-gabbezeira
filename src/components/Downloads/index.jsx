@@ -4,7 +4,7 @@ import DownloadsItems from '../../mocks/downloads-items.json'
 
 import { Items } from './Items'
 import { Search } from 'lucide-react'
-import { DownloadNotFound } from '../'
+import { NotFound } from '../'
 
 export function Downloads() {
   const [search, setSearch] = React.useState('')
@@ -37,9 +37,9 @@ export function Downloads() {
             </div>
           ))
         ) : (
-          <DownloadNotFound
+          <NotFound
             NotFoundDescription="Programa não encontrado"
-            NotFoundImage="video"
+            NotFoundImage="download"
           />
         )}
       </div>

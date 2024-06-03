@@ -1,11 +1,14 @@
 import React from 'react'
-import { Warning, Login } from '../components'
+import { Title, Downloads } from '../components'
 
 export function Admin() {
   return (
     <>
-      <Login />
-      <Warning />
+      <Title
+        title="Contatos"
+        subtitle="Entre em contato comigo caso tenha alguma dúvida"
+      />
+      <Downloads />
     </>
   )
 }

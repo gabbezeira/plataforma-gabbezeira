@@ -4,15 +4,15 @@ import { Container } from './styles'
 export function Login() {
   return (
     <Container>
-      <form className="form" action="">
+      <form className="form">
         <Title title="Login" subtitle="Acesse o painel administrativo" />
         <div className="form-inputs">
           <div className="input-area">
-            <h1 className="label">Nome de Usuário</h1>
+            <h1 className="label">Email</h1>
             <input
               className="input-box"
-              type="text"
-              placeholder="Digite o usuário"
+              type="email"
+              placeholder="Digite o email"
             />
           </div>
           <div className="input-area">
