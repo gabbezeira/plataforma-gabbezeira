@@ -14,7 +14,7 @@ export const Container = styled.div`
   .thumb {
     width: 22.25rem;
     height: 12.5rem;
-    border-radius: 0.9375rem;
+    border-radius: 0.875rem;
 
     background-size: cover;
     background-position: center;
@@ -33,7 +33,7 @@ export const Container = styled.div`
 
     background-color: var(--black-color-00);
     border: 0.0313rem solid var(--stroke-color);
-    border-radius: 0.625rem;
+    border-radius: 0.875rem;
 
     .card-top {
       display: flex;

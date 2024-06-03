@@ -14,7 +14,7 @@ export const Container = styled.div`
 
   background-color: var(--black-color-00);
   border: 0.0313rem solid var(--stroke-color);
-  border-radius: 0.9375rem;
+  border-radius: 0.875rem;
 
   .left-content {
     display: flex;

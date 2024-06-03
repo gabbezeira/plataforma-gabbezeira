@@ -69,7 +69,7 @@ export const Container = styled.div`
       padding: 0rem 0.75rem;
       background-color: var(--primary-color-opacity);
       border: 0.0625rem solid var(--primary-color);
-      gap: 6px;
+      gap: 0.375rem;
 
       &:hover {
         background-color: var(--primary-color);

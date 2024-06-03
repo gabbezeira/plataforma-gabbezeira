@@ -59,7 +59,7 @@ export const Container = styled.div`
           transition: all 0.2s;
 
           &:focus {
-            border: 1px solid var(--primary-color);
+            border: 0.0625rem solid var(--primary-color);
           }
 
           &::placeholder {

@@ -29,8 +29,8 @@ export const Container = styled.div`
 
     text-decoration: none;
 
-    background-color: var(--black-color-02);
-    border: 0.0625rem solid var(--black-color-02);
+    background-color: var(--black-color-01);
+    border: 0.0625rem solid var(--black-color-01);
     border-radius: 0.625rem;
 
     transition: all 0.2s;
