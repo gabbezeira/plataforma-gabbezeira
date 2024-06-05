@@ -31,4 +31,10 @@ export const Container = styled.div`
       padding: 0.5rem;
     }
   }
+
+  @media (min-width: 2559px) {
+    .alert {
+      width: 60%;
+    }
+  }
 `

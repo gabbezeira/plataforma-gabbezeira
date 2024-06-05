@@ -3,7 +3,7 @@ import '../../../styles/index.css'
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
 
   width: 100%;

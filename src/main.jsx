@@ -10,6 +10,7 @@ import { Error } from './pages/Error'
 import { DownloadPage } from './pages/DownloadPage'
 import { LoginPage } from './pages/LoginPage'
 import { Admin } from './pages/Admin'
+import { PrivateRoute } from './routes/privateRoutes'
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'painel',
-        element: <Admin />,
+        element: (
+          <PrivateRoute>
+            <Admin />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -15,33 +15,37 @@ export function Downloads() {
 
   return (
     <Container>
-      <div className="search">
-        <Search className="icon" />
-        <input
-          className="search-input"
-          type="search"
-          placeholder="Digite o nome do programa"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
-      <div className="item">
-        {downloads.length > 0 ? (
-          downloads.map((item) => (
-            <div key={item.id}>
-              <Items
-                downloadImage={item.image}
-                downloadTitle={item.title}
-                downloadLink={item.link}
-              />
-            </div>
-          ))
-        ) : (
-          <NotFound
-            NotFoundDescription="Programa não encontrado"
-            NotFoundImage="download"
+      <div className="download-area">
+        <div className="search">
+          <Search className="icon" />
+          <input
+            className="search-input"
+            type="search"
+            placeholder="Digite o nome do programa"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
-        )}
+        </div>
+        <div className="item">
+          {downloads.length > 0 ? (
+            downloads
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((item) => (
+                <div key={item.id}>
+                  <Items
+                    downloadImage={item.image}
+                    downloadTitle={item.title}
+                    downloadLink={item.link}
+                  />
+                </div>
+              ))
+          ) : (
+            <NotFound
+              NotFoundDescription="Programa não encontrado"
+              NotFoundImage="download"
+            />
+          )}
+        </div>
       </div>
     </Container>
   )
