@@ -134,9 +134,12 @@ export const Container = styled.div`
     }
 
     .right-content {
+      justify-content: center;
+
       .download-button {
         justify-content: center;
         align-items: center;
+        width: 100%;
       }
     }
   }

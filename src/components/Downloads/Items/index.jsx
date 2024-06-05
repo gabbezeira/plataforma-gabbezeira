@@ -38,14 +38,14 @@ export function Items(props) {
           Baixar
         </Link>
 
-        {props.showDownloadDetails && (
+        {props.showDownloadDetails ? (
           <Link
             className="download-details"
             to={`/downloads/${props.downloadId}`}
           >
             Ver Mais
           </Link>
-        )}
+        ) : null}
       </div>
     </Container>
   )

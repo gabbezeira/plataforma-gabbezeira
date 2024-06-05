@@ -61,15 +61,17 @@ export const Container = styled.div`
   }
 
   @media (max-width: 640px) {
-    flex-direction: column;
+    .contact-area {
+      flex-direction: column;
 
-    .social-media {
-      gap: 0.625rem;
-      width: 100%;
-      padding: 0.875rem;
+      .social-media {
+        gap: 0.625rem;
+        width: 100%;
+        padding: 0.875rem;
 
-      .text {
-        font-size: 0.875rem;
+        .text {
+          font-size: 0.875rem;
+        }
       }
     }
   }
