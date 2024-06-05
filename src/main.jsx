@@ -11,6 +11,7 @@ import { DownloadPage } from './pages/DownloadPage'
 import { LoginPage } from './pages/LoginPage'
 import { Admin } from './pages/Admin'
 import { PrivateRoute } from './routes/privateRoutes'
+import { DownloadDetails } from './components'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'downloads',
         element: <DownloadPage />,
+      },
+      {
+        path: 'downloads/:id',
+        element: <DownloadDetails />,
       },
       {
         path: 'contact',

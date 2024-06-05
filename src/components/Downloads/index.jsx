@@ -33,9 +33,12 @@ export function Downloads() {
               .map((item) => (
                 <div key={item.id}>
                   <Items
+                    downloadId={item.id}
                     downloadImage={item.image}
                     downloadTitle={item.title}
                     downloadLink={item.link}
+                    showDownloadDetails={false}
+                    showConfetti={false}
                   />
                 </div>
               ))

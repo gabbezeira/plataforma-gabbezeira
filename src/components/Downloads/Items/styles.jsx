@@ -39,35 +39,75 @@ export const Container = styled.div`
     }
   }
 
-  .download-button {
+  .right-content {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    gap: 0.75rem;
 
-    width: auto;
-    height: 2.5rem;
+    .download-button {
+      display: flex;
+      align-items: center;
 
-    padding: 0rem 0.9375rem;
+      width: auto;
+      height: 2.5rem;
 
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 0.3125rem;
+      padding: 0rem 0.9375rem;
 
-    text-decoration: none;
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 0.3125rem;
 
-    color: var(--white-color-00);
-    font-size: 0.875rem;
+      text-decoration: none;
 
-    transition: all 0.2s;
-    cursor: pointer;
+      color: var(--white-color-00);
+      font-size: 0.875rem;
 
-    &:hover {
-      transform: scale(1.02);
+      transition: all 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      .icon {
+        width: 1.25rem;
+        height: auto;
+        margin-right: 0.625rem;
+      }
     }
 
-    .icon {
-      width: 1.25rem;
-      height: auto;
-      margin-right: 0.625rem;
+    .download-details {
+      display: flex;
+      align-items: center;
+
+      width: auto;
+      height: 2.5rem;
+
+      padding: 0rem 0.5rem;
+
+      background-color: var(--primary-color-opacity);
+      border: 1px solid var(--primary-color);
+      border-radius: 0.3125rem;
+
+      text-decoration: none;
+
+      color: var(--white-color-00);
+      font-size: 0.875rem;
+      white-space: nowrap;
+
+      transition: all 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      .icon {
+        width: 1.25rem;
+        height: auto;
+        margin-right: 0.625rem;
+      }
     }
   }
 
@@ -93,9 +133,11 @@ export const Container = styled.div`
       }
     }
 
-    .download-button {
-      justify-content: center;
-      align-items: center;
+    .right-content {
+      .download-button {
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 `
