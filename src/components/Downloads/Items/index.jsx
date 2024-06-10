@@ -41,6 +41,7 @@ export function Items(props) {
         {props.showDownloadDetails ? (
           <Link
             className="download-details"
+            target="_blank"
             to={`/downloads/${props.downloadId}`}
           >
             Ver Mais
