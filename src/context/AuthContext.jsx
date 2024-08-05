@@ -13,7 +13,14 @@ export const AuthProvider = ({ children }) => {
       const storageToken = localStorage.getItem('@Auth:token')
 
       if (storageUser && storageToken) {
-        setUser(storageUser)
+        try {
+          setUser(JSON.parse(storageUser)) // Parse the stored user data
+          api.defaults.headers.common.Authorization = `Bearer ${storageToken}`
+        } catch (error) {
+          console.error('Error parsing user data:', error.message)
+          localStorage.removeItem('@Auth:user')
+          localStorage.removeItem('@Auth:token')
+        }
       }
     }
     loadingStoreData()
@@ -21,24 +28,28 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = async ({ email, password }) => {
     try {
-      const response = await api.post('/auth', { email, password })
+      const response = await api.post('/login', { email, password })
       if (response.data.error) {
         alert(response.data.error)
       } else {
-        setUser(response.data)
-        api.defaults.headers.common.Authorization = `Bearer ${response.data.token}`
+        const { token } = response.data
+        api.defaults.headers.common.Authorization = `Bearer ${token}`
 
-        localStorage.setItem('@Auth:user', JSON.stringify(response.data.user))
-        localStorage.setItem('@Auth:token', response.data.token)
+        // Se você não precisar buscar dados do usuário, remova esta parte
+        setUser({ email }) // Defina um valor fictício ou real de acordo com a resposta da API
+
+        localStorage.setItem('@Auth:user', JSON.stringify({ email }))
+        localStorage.setItem('@Auth:token', token)
       }
     } catch (error) {
-      console.log(error)
+      console.log('SignIn error:', error)
     }
   }
 
   const signOut = () => {
     localStorage.clear()
     setUser(null)
+    api.defaults.headers.common.Authorization = ''
     return <Navigate to="/" />
   }
 

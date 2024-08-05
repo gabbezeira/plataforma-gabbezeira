@@ -1,10 +1,32 @@
 import { Title } from '../Title'
 import { Container } from './styles'
+import { Navigate } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext'
 
 export function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { signIn, signed } = useContext(AuthContext)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const data = { email, password }
+    try {
+      await signIn(data)
+    } catch (error) {
+      console.error('Login failed:', error)
+    }
+  }
+
+  // Redirecionar se o usuário estiver autenticado
+  if (signed) {
+    return <Navigate to="/painel" />
+  }
+
   return (
     <Container>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <Title title="Login" subtitle="Acesse o painel administrativo" />
         <div className="form-inputs">
           <div className="input-area">
@@ -13,6 +35,8 @@ export function Login() {
               className="input-box"
               type="email"
               placeholder="Digite o email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input-area">
@@ -21,6 +45,8 @@ export function Login() {
               className="input-box"
               type="password"
               placeholder="Digite a senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
