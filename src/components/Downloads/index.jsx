@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from './styles'
-
 import { Items } from './Items'
 import { Search } from 'lucide-react'
 import { NotFound } from '../'
-
-import axios from 'axios'
+import { api } from '../api' // Importando a instância do axios configurada
 import { Loader } from '../Loader'
 
 export function Downloads() {
@@ -17,7 +15,7 @@ export function Downloads() {
   useEffect(() => {
     const fetchDownloads = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/files')
+        const response = await api.get('/files')
         setDownloads(response.data)
       } catch (err) {
         setError('Erro ao carregar arquivos')
