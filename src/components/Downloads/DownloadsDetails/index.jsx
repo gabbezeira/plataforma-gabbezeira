@@ -19,14 +19,14 @@ export function DownloadDetails() {
         console.log(`Fetching details for numericId: ${numericId}`)
         const response = await axios.get(
           `https://gabbezeira.vercel.app/files/${numericId}`,
-          { responseType: 'text' }, // Receber a resposta como texto para verificar o conteúdo
+          { responseType: 'text' }, // Receber a resposta como texto
         )
 
         console.log('Full API response:', response)
         console.log('Response data type:', typeof response.data)
         console.log('Response data:', response.data)
 
-        // Verifique se a resposta contém HTML
+        // Verifique se a resposta é HTML
         if (
           response.data.startsWith('<!doctype html>') ||
           response.data.startsWith('<html')
