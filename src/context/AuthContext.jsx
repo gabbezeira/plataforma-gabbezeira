@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const signOut = () => {
+  const logOut = () => {
     localStorage.clear()
     setUser(null)
     api.defaults.headers.common.Authorization = ''
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         signIn,
-        signOut,
+        logOut,
         signed: !!user,
         loading, // Adiciona o estado de carregamento ao contexto
       }}
