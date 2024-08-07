@@ -1,11 +1,11 @@
 import React from 'react'
-import { Title, Downloads } from '../components'
+import { Title, Painel } from '../components'
 
 export function Admin() {
   return (
     <>
       <Title title="Administração" subtitle="Painel administrativo" />
-      <Downloads />
+      <Painel />
     </>
   )
 }
