@@ -17,7 +17,7 @@ export function DownloadDetails() {
     const fetchDownloadDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/files/${numericId}`,
+          `https://gabbezeira.vercel.app/files/${numericId}`,
         )
         setDownload(response.data)
       } catch (err) {
