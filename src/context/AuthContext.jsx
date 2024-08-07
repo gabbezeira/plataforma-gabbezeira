@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(false) // Estado de carregamento
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const loadingStoreData = () => {
