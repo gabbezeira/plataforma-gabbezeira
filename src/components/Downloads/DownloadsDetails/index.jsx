@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useParams, Navigate } from 'react-router-dom'
 import { Title } from '../../Title'
 import { Items } from '../Items'
 import { Warning } from '../../Warning'
@@ -8,7 +8,8 @@ import axios from 'axios'
 import { Loader } from '../../Loader'
 
 export function DownloadDetails() {
-  const [downloads, setDownloads] = useState([]) // Altere para um array
+  const { numericId } = useParams() // Pegue o numericId da URL
+  const [download, setDownload] = useState(null) // Altere para um único item
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -19,26 +20,32 @@ export function DownloadDetails() {
           'https://plataforma-api.vercel.app/files',
         )
         if (Array.isArray(response.data)) {
-          setDownloads(response.data)
+          const selectedDownload = response.data.find(
+            (item) => item.numericId === parseInt(numericId, 10),
+          )
+          if (selectedDownload) {
+            setDownload(selectedDownload)
+          } else {
+            throw new Error('Download não encontrado')
+          }
         } else {
           throw new Error('Resposta inesperada da API')
         }
       } catch (err) {
-        setError('Erro ao carregar arquivos')
+        setError('Erro ao carregar o arquivo')
       } finally {
         setLoading(false)
       }
     }
 
     fetchDownloads()
-  }, [])
+  }, [numericId])
 
   if (loading) {
     return <Loader />
   }
 
-  if (error || !downloads.length) {
-    // Verifique se a lista está vazia
+  if (error || !download) {
     return <Navigate to="/error" />
   }
 
@@ -50,17 +57,15 @@ export function DownloadDetails() {
       />
       <Container>
         <div className="download-area">
-          {downloads.map((download) => (
-            <Items
-              key={download.numericId} // Adicione uma chave única para cada item
-              downloadId={download.numericId}
-              downloadImage={download.image}
-              downloadTitle={download.title}
-              downloadLink={download.link}
-              showDownloadDetails={false}
-              showConfetti={true}
-            />
-          ))}
+          <Items
+            key={download.numericId}
+            downloadId={download.numericId}
+            downloadImage={download.image}
+            downloadTitle={download.title}
+            downloadLink={download.link}
+            showDownloadDetails={false}
+            showConfetti={true}
+          />
         </div>
       </Container>
       <Warning />
