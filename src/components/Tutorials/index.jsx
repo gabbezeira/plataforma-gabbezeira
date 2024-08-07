@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Container } from './styles'
 import { Items } from './Items'
 import { NotFound } from '../'
-
 import axios from 'axios'
 import { Loader } from '../Loader'
 
@@ -21,11 +20,18 @@ export function Tutorials() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('https://gabbezeira.vercel.app/videos')
-        setVideos(response.data)
+        const response = await axios.get(
+          'https://plataforma-api.vercel.app/videos',
+        )
+        console.log('API Response:', response.data) // Log da resposta da API
+        if (Array.isArray(response.data)) {
+          setVideos(response.data)
+        } else {
+          throw new Error('Resposta inesperada da API')
+        }
       } catch (err) {
         setError('Erro ao carregar vídeos')
-        console.error('Error fetching videos:', err)
+        console.error('Error fetching videos:', err) // Log do erro
       } finally {
         setLoading(false)
       }
