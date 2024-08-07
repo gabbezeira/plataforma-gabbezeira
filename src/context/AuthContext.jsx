@@ -35,8 +35,8 @@ export const AuthProvider = ({ children }) => {
         const { token } = response.data
         api.defaults.headers.common.Authorization = `Bearer ${token}`
 
-        // Se você não precisar buscar dados do usuário, remova esta parte
-        setUser({ email }) // Defina um valor fictício ou real de acordo com a resposta da API
+        // Defina um usuário fictício ou real de acordo com a resposta da API
+        setUser({ email })
 
         localStorage.setItem('@Auth:user', JSON.stringify({ email }))
         localStorage.setItem('@Auth:token', token)

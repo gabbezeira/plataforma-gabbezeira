@@ -19,7 +19,6 @@ export function Login() {
     }
   }
 
-  // Redirecionar se o usuário estiver autenticado
   if (signed) {
     return <Navigate to="/painel" />
   }
