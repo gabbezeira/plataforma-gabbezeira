@@ -51,7 +51,7 @@ export function Login() {
           </div>
         </div>
         <button className="form-button" type="submit" disabled={loading}>
-          {loading ? <LoaderCircle className="spinner" /> : 'Entrar no Painel'}
+          {loading ? <LoaderCircle className="spinner" /> : 'Entrar'}
         </button>
       </form>
     </Container>
