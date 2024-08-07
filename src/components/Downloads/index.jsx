@@ -16,12 +16,14 @@ export function Downloads() {
     const fetchDownloads = async () => {
       try {
         const response = await axios.get('https://gabbezeira.vercel.app/files')
+        console.log('API Response:', response.data) // Adicionando log para verificar a resposta da API
         if (Array.isArray(response.data)) {
           setDownloads(response.data)
         } else {
           throw new Error('Resposta inesperada da API')
         }
       } catch (err) {
+        console.error('Erro ao carregar arquivos:', err) // Adicionando log para capturar erros
         setError('Erro ao carregar arquivos')
       } finally {
         setLoading(false)
