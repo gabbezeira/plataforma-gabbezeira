@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from './styles'
+
 import { Items } from './Items'
 import { Search } from 'lucide-react'
 import { NotFound } from '../'
-import { api } from '../api' // Importando a instância do axios configurada
+
+import axios from 'axios'
 import { Loader } from '../Loader'
 
 export function Downloads() {
@@ -15,7 +17,7 @@ export function Downloads() {
   useEffect(() => {
     const fetchDownloads = async () => {
       try {
-        const response = await api.get('/files')
+        const response = await axios.get('https://gabbezeira.vercel.app/files')
         setDownloads(response.data)
       } catch (err) {
         setError('Erro ao carregar arquivos')

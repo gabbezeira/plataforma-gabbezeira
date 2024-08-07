@@ -21,7 +21,7 @@ export function Tutorials() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/videos')
+        const response = await axios.get('https://gabbezeira.vercel.app/videos')
         setVideos(response.data)
       } catch (err) {
         setError('Erro ao carregar vídeos')
