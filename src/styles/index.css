@@ -24,10 +24,11 @@
 
   /** Stroke Colors **/
   --stroke-color: rgba(225, 225, 230, 0.1);
+  --solid-stroke-color: #2c2c2c;
 
   /** Alerts Colors **/
   --alert-color: #D89E08;
-  --sip-alert: #CA3737;
+  --sip-alert: #b52222;
   --beta-alert: #36D073;
   --beta-alert-link: #2CF37B;
 }

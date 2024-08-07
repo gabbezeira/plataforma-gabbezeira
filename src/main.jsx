@@ -10,9 +10,11 @@ import { Contact } from './pages/Contact'
 import { Error } from './pages/Error'
 import { DownloadPage } from './pages/DownloadPage'
 import { LoginPage } from './pages/LoginPage'
-import { Admin } from './pages/Admin'
 import { PrivateRoute } from './routes/privateRoutes'
 import { DownloadDetails } from './components'
+
+import { RegisterPainel } from './pages/RegisterHub'
+import { RegistedPainel } from './pages/RegisteredHub'
 
 const router = createBrowserRouter([
   {
@@ -29,7 +31,7 @@ const router = createBrowserRouter([
         element: <DownloadPage />,
       },
       {
-        path: 'downloads/:id',
+        path: 'downloads/:numericId',
         element: <DownloadDetails />,
       },
       {
@@ -41,10 +43,18 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: 'painel',
+        path: 'register-hub',
         element: (
           <PrivateRoute>
-            <Admin />
+            <RegisterPainel />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'registered-hub',
+        element: (
+          <PrivateRoute>
+            <RegistedPainel />
           </PrivateRoute>
         ),
       },

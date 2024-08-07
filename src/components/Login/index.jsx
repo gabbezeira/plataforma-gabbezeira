@@ -3,7 +3,7 @@ import { Title } from '../Title'
 import { Container } from './styles'
 import { Navigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
-import { LoaderCircle } from 'lucide-react'
+import { Loader } from '../Loader'
 import { NotificationContext } from '../../context/NotificationContext'
 
 export function Login() {
@@ -38,7 +38,7 @@ export function Login() {
   }
 
   if (signed) {
-    return <Navigate to="/painel" />
+    return <Navigate to="/register-hub" />
   }
 
   return (
@@ -72,7 +72,7 @@ export function Login() {
           type="submit"
           disabled={loading || isSnackbarActive}
         >
-          {loading ? <LoaderCircle className="spinner" /> : 'Entrar'}
+          {loading ? <Loader size={28} /> : 'Entrar'}
         </button>
       </form>
     </Container>

@@ -1,15 +1,40 @@
+import React, { useEffect, useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
-import DownloadsItems from '../../../mocks/downloads-items.json'
 import { Title } from '../../Title'
 import { Items } from '../Items'
 import { Warning } from '../../Warning'
 import { Container } from './styles'
+import axios from 'axios'
+import { Loader } from '../../Loader'
 
 export function DownloadDetails() {
-  const { id } = useParams()
-  const download = DownloadsItems.find((item) => item.id === parseInt(id))
+  const { numericId } = useParams()
+  const [download, setDownload] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  if (!download) {
+  useEffect(() => {
+    const fetchDownloadDetails = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/files/${numericId}`,
+        )
+        setDownload(response.data)
+      } catch (err) {
+        setError('Arquivo não encontrado')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchDownloadDetails()
+  }, [numericId])
+
+  if (loading) {
+    return <Loader />
+  }
+
+  if (error || !download) {
     return <Navigate to="/error" />
   }
 

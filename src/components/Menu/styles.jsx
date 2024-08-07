@@ -30,7 +30,10 @@ export const Container = styled.div`
 
     .button {
       display: flex;
+      justify-content: center;
       align-items: center;
+
+      gap: 0.5rem;
       padding: 0rem 1rem;
 
       text-transform: capitalize;

@@ -1,11 +1,19 @@
 import styled from 'styled-components'
-import '../../styles/index.css'
+import '../../../styles/index.css'
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.75rem;
   width: 100%;
+
+  .title {
+    color: var(--white-color-00);
+    font-size: 1.75rem;
+    font-weight: 500;
+  }
 
   .form {
     display: flex;
@@ -13,15 +21,11 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
 
-    width: 31.25rem;
+    width: 52rem;
     height: auto;
 
-    gap: 1.875rem;
-    padding: 2rem 2.5rem;
-
-    background-color: var(--black-color-00);
-    border: 0.0313rem solid var(--stroke-color);
-    border-radius: 0.625rem;
+    gap: 2.5rem;
+    padding: 0rem;
 
     .form-inputs {
       display: flex;
@@ -33,6 +37,14 @@ export const Container = styled.div`
 
       gap: 1.25rem;
 
+      .duo-section {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+
+        width: 100%;
+      }
+
       .input-area {
         display: flex;
         flex-direction: column;
@@ -42,7 +54,7 @@ export const Container = styled.div`
         .label {
           font-size: 0.875rem;
           font-weight: 500;
-          color: var(--white-color-01);
+          color: var(--white-color-00);
         }
 
         .input-box {
@@ -77,7 +89,8 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
 
-      width: 100%;
+      margin-top: 0.5rem;
+      width: 60%;
       height: 3.5rem;
 
       background-color: var(--primary-color-opacity);
@@ -95,12 +108,67 @@ export const Container = styled.div`
       &:hover {
         transform: scale(1.04);
       }
+
+      .spinner {
+        animation: spin 1s linear infinite;
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      }
     }
 
-    .error-message {
-      color: red;
-      margin-top: 10px;
-      font-size: 14px;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+
+      gap: 18px;
+      width: 100%;
+
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 0.5rem;
+        padding: 0rem 1rem;
+
+        text-transform: capitalize;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--white-color-00);
+
+        width: 40%;
+        height: 3.5rem;
+
+        background-color: var(--stroke-color);
+        border: 0.0625rem solid var(--stroke-color);
+        border-radius: 0.3125rem;
+
+        transition: all 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.04);
+        }
+      }
+
+      .colored {
+        color: var(--white-color-00);
+        background-color: var(--primary-color);
+        border: 0.0625rem solid var(--primary-color);
+
+        &:hover {
+          transform: scale(1.04);
+        }
+      }
     }
   }
 `

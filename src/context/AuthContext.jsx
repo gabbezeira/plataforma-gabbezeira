@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
         setUser({ email })
         localStorage.setItem('@Auth:user', JSON.stringify({ email }))
         localStorage.setItem('@Auth:token', token)
-        setRedirect('/painel')
+        setRedirect('/register-hub')
       }
     } catch {
       showSnackbar('Senha ou Email inválido.', 'error')

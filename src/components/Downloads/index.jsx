@@ -1,16 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container } from './styles'
-import DownloadsItems from '../../mocks/downloads-items.json'
 
 import { Items } from './Items'
 import { Search } from 'lucide-react'
 import { NotFound } from '../'
 
-export function Downloads() {
-  const [search, setSearch] = React.useState('')
+import axios from 'axios'
+import { Loader } from '../Loader'
 
-  const downloads = DownloadsItems.filter((downloads) =>
-    downloads.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+export function Downloads() {
+  const [search, setSearch] = useState('')
+  const [downloads, setDownloads] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    const fetchDownloads = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/files')
+        setDownloads(response.data)
+      } catch (err) {
+        setError('Erro ao carregar arquivos')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchDownloads()
+  }, [])
+
+  const filteredDownloads = downloads.filter((item) =>
+    item.title.toLowerCase().includes(search.toLowerCase()),
   )
 
   return (
@@ -27,13 +47,17 @@ export function Downloads() {
           />
         </div>
         <div className="item">
-          {downloads.length > 0 ? (
-            downloads
-              .sort((a, b) => new Date(b.date) - new Date(a.date))
+          {loading ? (
+            <Loader />
+          ) : error ? (
+            <p>{error}</p>
+          ) : filteredDownloads.length > 0 ? (
+            filteredDownloads
+              .sort((a, b) => new Date(b.upload) - new Date(a.upload))
               .map((item) => (
-                <div key={item.id}>
+                <div key={item.numericId}>
                   <Items
-                    downloadId={item.id}
+                    downloadId={item.numericId}
                     downloadImage={item.image}
                     downloadTitle={item.title}
                     downloadLink={item.link}

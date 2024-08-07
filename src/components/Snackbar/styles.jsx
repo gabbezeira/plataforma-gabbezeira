@@ -15,7 +15,7 @@ export const SnackbarContainer = styled.div`
   visibility: ${(props) => (props.$visible ? 'visible' : 'hidden')};
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 0.75rem;
 
