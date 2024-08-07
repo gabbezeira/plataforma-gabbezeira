@@ -16,11 +16,14 @@ export function DownloadDetails() {
   useEffect(() => {
     const fetchDownloadDetails = async () => {
       try {
+        console.log(`Fetching details for numericId: ${numericId}`)
         const response = await axios.get(
           `https://gabbezeira.vercel.app/files/${numericId}`,
         )
+        console.log('API response:', response.data)
         setDownload(response.data)
       } catch (err) {
+        console.error('Error fetching download details:', err)
         setError('Arquivo não encontrado')
       } finally {
         setLoading(false)
