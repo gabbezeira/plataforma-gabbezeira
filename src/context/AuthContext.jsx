@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
         signIn,
         logOut,
         signed: !!user,
-        loading, // Adiciona o estado de carregamento ao contexto
+        loading,
       }}
     >
       {children}
