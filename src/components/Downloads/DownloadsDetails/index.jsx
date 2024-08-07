@@ -19,9 +19,16 @@ export function DownloadDetails() {
         console.log(`Fetching details for numericId: ${numericId}`)
         const response = await axios.get(
           `https://gabbezeira.vercel.app/files/${numericId}`,
+          { responseType: 'json' },
         )
-        console.log('API response:', response.data)
-        setDownload(response.data)
+
+        // Check if the response data is as expected
+        if (response.data && typeof response.data === 'object') {
+          console.log('API response:', response.data)
+          setDownload(response.data)
+        } else {
+          throw new Error('Unexpected response format')
+        }
       } catch (err) {
         console.error('Error fetching download details:', err)
         setError('Arquivo não encontrado')
