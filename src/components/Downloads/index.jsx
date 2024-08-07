@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from './styles'
-
 import { Items } from './Items'
 import { Search } from 'lucide-react'
 import { NotFound } from '../'
-
-import axios from 'axios'
+import { api } from '../api' // Importando a instância do axios configurada
 import { Loader } from '../Loader'
 
 export function Downloads() {
@@ -17,8 +15,12 @@ export function Downloads() {
   useEffect(() => {
     const fetchDownloads = async () => {
       try {
-        const response = await axios.get('https://gabbezeira.vercel.app/files')
-        setDownloads(response.data)
+        const response = await api.get('/files')
+        if (Array.isArray(response.data)) {
+          setDownloads(response.data)
+        } else {
+          throw new Error('Resposta inesperada da API')
+        }
       } catch (err) {
         setError('Erro ao carregar arquivos')
       } finally {
@@ -29,9 +31,11 @@ export function Downloads() {
     fetchDownloads()
   }, [])
 
-  const filteredDownloads = downloads.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase()),
-  )
+  const filteredDownloads = Array.isArray(downloads)
+    ? downloads.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase()),
+      )
+    : []
 
   return (
     <Container>
