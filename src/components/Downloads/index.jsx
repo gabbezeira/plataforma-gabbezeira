@@ -15,7 +15,10 @@ export function Downloads() {
   useEffect(() => {
     const fetchDownloads = async () => {
       try {
-        const response = await axios.get('https://gabbezeira.vercel.app/files')
+        // Corrija a URL da API conforme necessário
+        const response = await axios.get(
+          'https://plataforma-api.vercel.app/files',
+        )
         console.log('API Response:', response.data) // Adicionando log para verificar a resposta da API
         if (Array.isArray(response.data)) {
           setDownloads(response.data)
