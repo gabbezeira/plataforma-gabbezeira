@@ -6,6 +6,7 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(false) // Estado de carregamento
 
   useEffect(() => {
     const loadingStoreData = () => {
@@ -14,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
       if (storageUser && storageToken) {
         try {
-          setUser(JSON.parse(storageUser)) // Parse the stored user data
+          setUser(JSON.parse(storageUser))
           api.defaults.headers.common.Authorization = `Bearer ${storageToken}`
         } catch (error) {
           console.error('Error parsing user data:', error.message)
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const signIn = async ({ email, password }) => {
+    setLoading(true) // Inicia o carregamento
     try {
       const response = await api.post('/login', { email, password })
       if (response.data.error) {
@@ -34,15 +36,14 @@ export const AuthProvider = ({ children }) => {
       } else {
         const { token } = response.data
         api.defaults.headers.common.Authorization = `Bearer ${token}`
-
-        // Defina um usuário fictício ou real de acordo com a resposta da API
         setUser({ email })
-
         localStorage.setItem('@Auth:user', JSON.stringify({ email }))
         localStorage.setItem('@Auth:token', token)
       }
     } catch (error) {
       console.log('SignIn error:', error)
+    } finally {
+      setLoading(false) // Finaliza o carregamento
     }
   }
 
@@ -60,6 +61,7 @@ export const AuthProvider = ({ children }) => {
         signIn,
         signOut,
         signed: !!user,
+        loading, // Adiciona o estado de carregamento ao contexto
       }}
     >
       {children}

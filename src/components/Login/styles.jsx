@@ -16,7 +16,7 @@ export const Container = styled.div`
     width: 31.25rem;
     height: auto;
 
-    gap: 3.125rem;
+    gap: 1.875rem;
     padding: 2rem 2.5rem;
 
     background-color: var(--black-color-00);
@@ -73,26 +73,40 @@ export const Container = styled.div`
 
     .form-button {
       display: flex;
+      position: relative;
       justify-content: center;
       align-items: center;
 
-      width: auto;
-      height: auto;
+      width: 100%;
+      height: 3.5rem;
 
-      padding: 0.9375rem;
+      background-color: var(--primary-color-opacity);
 
-      background-color: var(--primary-color);
+      border: 1px solid var(--primary-color);
       border-radius: 0.25rem;
-      border: none;
 
       color: var(--white-color-00);
-      font-size: 0.875rem;
+      font-size: 1rem;
+      font-weight: 500;
 
-      transition: all 0.2s;
+      transition: all 0.4s;
       cursor: pointer;
 
       &:hover {
         transform: scale(1.04);
+      }
+
+      .spinner {
+        animation: spin 1s linear infinite;
+
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
       }
     }
   }

@@ -3,11 +3,12 @@ import { Container } from './styles'
 import { Navigate } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
+import { LoaderCircle } from 'lucide-react' // Importa um ícone de carregamento
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { signIn, signed } = useContext(AuthContext)
+  const { signIn, signed, loading } = useContext(AuthContext) // Adiciona loading
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -49,8 +50,8 @@ export function Login() {
             />
           </div>
         </div>
-        <button className="form-button" type="submit">
-          Entrar no Painel
+        <button className="form-button" type="submit" disabled={loading}>
+          {loading ? <LoaderCircle className="spinner" /> : 'Entrar no Painel'}
         </button>
       </form>
     </Container>
