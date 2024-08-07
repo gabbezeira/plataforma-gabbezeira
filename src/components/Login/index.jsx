@@ -3,12 +3,12 @@ import { Container } from './styles'
 import { Navigate } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import { LoaderCircle } from 'lucide-react' // Importa um ícone de carregamento
+import { LoaderCircle } from 'lucide-react'
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { signIn, signed, loading } = useContext(AuthContext) // Adiciona loading
+  const { signIn, signed, loading } = useContext(AuthContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
