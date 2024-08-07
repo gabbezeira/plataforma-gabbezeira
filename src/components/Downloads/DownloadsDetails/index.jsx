@@ -19,26 +19,35 @@ export function DownloadDetails() {
         console.log(`Fetching details for numericId: ${numericId}`)
         const response = await axios.get(
           `https://gabbezeira.vercel.app/files/${numericId}`,
-          { responseType: 'text' }, // Temporariamente configurado como 'text' para ver o conteúdo
+          { responseType: 'text' }, // Receber a resposta como texto para verificar o conteúdo
         )
-        console.log('Full API response:', response) // Log completo da resposta
+
+        console.log('Full API response:', response)
         console.log('Response data type:', typeof response.data)
         console.log('Response data:', response.data)
 
-        // Verifique o conteúdo da resposta
+        // Verifique se a resposta contém HTML
+        if (
+          response.data.startsWith('<!doctype html>') ||
+          response.data.startsWith('<html')
+        ) {
+          throw new Error('Response is HTML, not JSON')
+        }
+
+        // Tente analisar o JSON da resposta
         try {
           const data = JSON.parse(response.data)
           if (data && typeof data === 'object') {
             setDownload(data)
           } else {
-            throw new Error('Unexpected response format')
+            throw new Error('Unexpected JSON format')
           }
         } catch (parseError) {
           throw new Error('Failed to parse JSON response')
         }
       } catch (err) {
         console.error('Error fetching download details:', err)
-        setError('Arquivo não encontrado')
+        setError('Arquivo não encontrado ou erro no servidor')
       } finally {
         setLoading(false)
       }
