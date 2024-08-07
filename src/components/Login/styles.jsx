@@ -109,5 +109,11 @@ export const Container = styled.div`
         }
       }
     }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
   }
 `

@@ -1,12 +1,14 @@
-import { createContext, useState, useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
+import React, { createContext, useState, useEffect, useContext } from 'react'
 import { api } from '../services/api'
+import { NotificationContext } from './NotificationContext'
 
 export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [redirect, setRedirect] = useState('')
+  const { showSnackbar } = useContext(NotificationContext)
 
   useEffect(() => {
     const loadingStoreData = () => {
@@ -28,22 +30,23 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const signIn = async ({ email, password }) => {
-    setLoading(true) // Inicia o carregamento
+    setLoading(true)
     try {
       const response = await api.post('/login', { email, password })
       if (response.data.error) {
-        alert(response.data.error)
+        showSnackbar(response.data.error, 'error')
       } else {
         const { token } = response.data
         api.defaults.headers.common.Authorization = `Bearer ${token}`
         setUser({ email })
         localStorage.setItem('@Auth:user', JSON.stringify({ email }))
         localStorage.setItem('@Auth:token', token)
+        setRedirect('/painel')
       }
-    } catch (error) {
-      console.log('SignIn error:', error)
+    } catch {
+      showSnackbar('Senha ou Email inválido.', 'error')
     } finally {
-      setLoading(false) // Finaliza o carregamento
+      setLoading(false)
     }
   }
 
@@ -51,8 +54,15 @@ export const AuthProvider = ({ children }) => {
     localStorage.clear()
     setUser(null)
     api.defaults.headers.common.Authorization = ''
-    return <Navigate to="/" />
+    setRedirect('/')
   }
+
+  useEffect(() => {
+    if (redirect) {
+      window.location.href = redirect
+      setRedirect('')
+    }
+  }, [redirect])
 
   return (
     <AuthContext.Provider

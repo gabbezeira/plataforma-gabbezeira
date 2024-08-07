@@ -1,22 +1,39 @@
+import React, { useState, useContext, useEffect } from 'react'
 import { Title } from '../Title'
 import { Container } from './styles'
 import { Navigate } from 'react-router-dom'
-import { useState, useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { LoaderCircle } from 'lucide-react'
+import { NotificationContext } from '../../context/NotificationContext'
 
 export function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { signIn, signed, loading } = useContext(AuthContext)
+  const { showSnackbar, snackbar } = useContext(NotificationContext)
+
+  const isFormValid = email.trim() !== '' && password.trim() !== ''
+  const [isSnackbarActive, setIsSnackbarActive] = useState(false)
+
+  useEffect(() => {
+    setIsSnackbarActive(snackbar.show)
+  }, [snackbar])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!isFormValid) {
+      showSnackbar('Por favor, preencha todos os campos.', 'info')
+      return
+    }
     const data = { email, password }
     try {
       await signIn(data)
     } catch (error) {
       console.error('Login failed:', error)
+      showSnackbar(
+        'Falha ao realizar login. Verifique suas credenciais.',
+        'erro',
+      )
     }
   }
 
@@ -50,7 +67,11 @@ export function Login() {
             />
           </div>
         </div>
-        <button className="form-button" type="submit" disabled={loading}>
+        <button
+          className="form-button"
+          type="submit"
+          disabled={loading || isSnackbarActive}
+        >
           {loading ? <LoaderCircle className="spinner" /> : 'Entrar'}
         </button>
       </form>
