@@ -33,7 +33,7 @@ export function DownloadRegistered({ onClose }) {
 
   return (
     <Container>
-      <h1 className="title">Cadastrar arquivo</h1>
+      <h1 className="title">Cadastao</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="duo-section">

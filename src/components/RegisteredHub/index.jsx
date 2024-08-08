@@ -22,7 +22,7 @@ export function RegisteredHub() {
       <div className="hub-area">
         <Link
           className="hub-button"
-          to="/register-hub"
+          to="/registered-hub"
           onClick={() => openModal(<VideoRegistered onClose={closeModal} />)}
         >
           <Video className="icon" />
@@ -30,7 +30,7 @@ export function RegisteredHub() {
         </Link>
         <Link
           className="hub-button"
-          to="/register-hub"
+          to="/registered-hub"
           onClick={() => openModal(<DownloadRegistered onClose={closeModal} />)}
         >
           <FolderArchive className="icon" />
