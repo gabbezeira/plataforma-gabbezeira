@@ -41,7 +41,7 @@ export function Items(props) {
         {props.showDownloadDetails ? (
           <Link
             className="download-details"
-            to={`/downloads/${props.numericId}`}
+            to={`/downloads/${props.downloadSlug}`}
           >
             Ver Mais
           </Link>

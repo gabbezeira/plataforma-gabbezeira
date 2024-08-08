@@ -6,6 +6,16 @@ const fadeIn = keyframes`
   to { right: 1.875rem; opacity: 1; }
 `
 
+const fadeInTop = keyframes`
+  from { bottom: -18.75rem; opacity: 0; }
+  to { bottom: 1.875rem; opacity: 1; }
+`
+
+const fadeOutTop = keyframes`
+  from { bottom: 1.875rem; opacity: 1; }
+  to { bottom: -18.75rem; opacity: 0; }
+`
+
 const fadeOut = keyframes`
   from { right: 1.875rem; opacity: 1; }
   to { right: -18.75rem; opacity: 0; }
@@ -19,10 +29,14 @@ export const SnackbarContainer = styled.div`
   align-items: center;
   gap: 0.75rem;
 
+  width: auto;
+  height: auto;
+
   min-width: 15.625rem;
   background-color: #212121;
 
   color: var(--white-color-00);
+  white-space: nowrap;
   text-align: center;
   font-size: 1rem;
 
@@ -31,7 +45,7 @@ export const SnackbarContainer = styled.div`
   padding: 0.875rem 1rem;
 
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   right: 1.875rem;
   bottom: 1.875rem;
 
@@ -39,6 +53,20 @@ export const SnackbarContainer = styled.div`
 
   .icon {
     color: var(--primary-color);
+  }
+
+  @media (max-width: 640px) {
+    position: fixed;
+    z-index: 1000;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1.875rem;
+
+    white-space: wrap;
+
+    animation: ${(props) => (props.$visible ? fadeInTop : fadeOutTop)} 0.5s
+      forwards;
   }
 `
 

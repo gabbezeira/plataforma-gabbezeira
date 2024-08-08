@@ -109,46 +109,6 @@ export const Container = styled.div`
       }
     }
 
-    .form-button {
-      display: flex;
-      position: relative;
-      justify-content: center;
-      align-items: center;
-
-      margin-top: 0.5rem;
-      width: 60%;
-      height: 3.5rem;
-
-      background-color: var(--primary-color-opacity);
-
-      border: 1px solid var(--primary-color);
-      border-radius: 0.25rem;
-
-      color: var(--white-color-00);
-      font-size: 1rem;
-      font-weight: 500;
-
-      transition: all 0.4s;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.04);
-      }
-
-      .spinner {
-        animation: spin 1s linear infinite;
-
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-      }
-    }
-
     .buttons {
       display: flex;
       justify-content: center;
@@ -193,6 +153,26 @@ export const Container = styled.div`
 
         &:hover {
           transform: scale(1.04);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    width: 280px;
+
+    .form {
+      width: 100%;
+
+      .form-inputs {
+        .duo-section {
+          flex-direction: column;
+        }
+      }
+
+      .buttons {
+        .button {
+          width: 50%;
         }
       }
     }

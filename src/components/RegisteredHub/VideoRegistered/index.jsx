@@ -1,108 +1,161 @@
+import React, { useEffect, useState, useContext } from 'react'
 import { Container } from './styles'
-import { useContext, useState, useEffect } from 'react'
-import { AuthContext } from '../../../context/AuthContext'
+import { Items } from './VideoItems'
+import { Search } from 'lucide-react'
+import { Pagination, NotFound, Modal } from '../../'
+
+import axios from 'axios'
 import { Loader } from '../../Loader'
-import { api } from '../../../services/api'
 import { NotificationContext } from '../../../context/NotificationContext'
+import DeleteImage from '../../../assets/Error/delete.svg'
 
-export function VideoRegistered({ onClose }) {
-  const { loading } = useContext(AuthContext)
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [link, setLink] = useState('')
-  const [thumb, setThumb] = useState('')
-  const [files, setFiles] = useState('')
+export function VideoRegistered() {
+  const [search, setSearch] = useState('')
+  const [video, setVideo] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedVideoId, setSelectedVideoId] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const { showSnackbar, snackbar } = useContext(NotificationContext)
-  const [isSnackbarActive, setIsSnackbarActive] = useState(false)
+  const { showSnackbar } = useContext(NotificationContext)
+  const itemsPerPage = 3
 
   useEffect(() => {
-    setIsSnackbarActive(snackbar.show)
-  }, [snackbar])
+    const fetchVideo = async () => {
+      try {
+        const response = await axios.get(
+          'https://plataforma-api.vercel.app/videos',
+        )
+        if (Array.isArray(response.data)) {
+          setVideo(response.data)
+        } else {
+          throw new Error('Resposta inesperada da API')
+        }
+      } catch (err) {
+        setError('Erro ao carregar arquivos')
+      } finally {
+        setLoading(false)
+      }
+    }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const data = { title, description, link, thumb, files }
+    fetchVideo()
+  }, [])
+
+  const handleDeleteClick = (id) => {
+    setSelectedVideoId(id)
+    setIsModalOpen(true)
+  }
+
+  const handleConfirmDelete = async () => {
     try {
-      await api.post('/videos', data)
-      showSnackbar('Vídeo Cadastrado!', 'success')
-      onClose()
-    } catch (error) {
-      showSnackbar('Erro ao cadastrar vídeo:', error, 'erro')
+      const token = localStorage.getItem('@Auth:token')
+      await axios.delete(
+        `https://plataforma-api.vercel.app/videos/${selectedVideoId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      showSnackbar('Arquivo Deletado!', 'success')
+      setVideo(video.filter((item) => item.numericId !== selectedVideoId))
+    } catch (err) {
+      showSnackbar(`Erro ao deletar arquivo: ${err.message}`, 'error')
+    } finally {
+      setIsModalOpen(false)
+      setSelectedVideoId(null)
     }
   }
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedVideoId(null)
+  }
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const filteredVideos = Array.isArray(video)
+    ? video.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase()),
+      )
+    : []
+
+  const totalPages = Math.ceil(filteredVideos.length / itemsPerPage)
+
+  const currentVideos = filteredVideos.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  )
+
   return (
     <Container>
-      <h1 className="title">Cadastrar vídeo</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-inputs">
-          <div className="duo-section">
-            <div className="input-area">
-              <h1 className="label">Nome do vídeo</h1>
-              <input
-                className="input-box"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div className="input-area">
-              <h1 className="label">Descrição</h1>
-              <input
-                className="input-box"
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="input-area">
-            <h1 className="label">Link do vídeo</h1>
-            <input
-              className="input-box"
-              type="text"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
+      <div className="video-area">
+        <div className="search">
+          <Search className="icon" />
+          <input
+            className="search-input"
+            type="search"
+            placeholder="Digite o nome do programa"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <div className="item">
+          {loading ? (
+            <Loader />
+          ) : error ? (
+            <p>{error}</p>
+          ) : currentVideos.length > 0 ? (
+            currentVideos
+              .sort((a, b) => new Date(b.upload) - new Date(a.upload))
+              .map((item) => (
+                <div key={item.numericId}>
+                  <Items
+                    videoId={item.numericId}
+                    videoImage={item.thumb}
+                    videoTitle={item.title}
+                    onDelete={handleDeleteClick}
+                  />
+                </div>
+              ))
+          ) : (
+            <NotFound
+              NotFoundDescription="Vídeo não encontrado"
+              NotFoundImage="video"
             />
-          </div>
+          )}
+        </div>
+      </div>
 
-          <div className="duo-section">
-            <div className="input-area">
-              <h1 className="label">Link da thumb</h1>
-              <input
-                className="input-box"
-                type="text"
-                value={thumb}
-                onChange={(e) => setThumb(e.target.value)}
-              />
-            </div>
-            <div className="input-area">
-              <h1 className="label">Link do arquivo</h1>
-              <input
-                className="input-box"
-                type="text"
-                value={files}
-                onChange={(e) => setFiles(e.target.value)}
-              />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+
+      {isModalOpen && (
+        <Modal onClose={handleCloseModal}>
+          <div className="confirm-modal">
+            <p className="title">Tem certeza que deseja deletar este item?</p>
+            <img
+              className="image"
+              src={DeleteImage}
+              alt="Imagem de um rapaz jogando um arquivo no lixo"
+            />
+            <div className="buttons">
+              <button className="button colored" onClick={handleConfirmDelete}>
+                Deletar
+              </button>
+              <button className="button" onClick={handleCloseModal}>
+                Cancelar
+              </button>
             </div>
           </div>
-        </div>
-        <div className="buttons">
-          <button
-            className="button"
-            type="button"
-            onClick={onClose}
-            disabled={loading || isSnackbarActive}
-          >
-            {loading || isSnackbarActive ? <Loader size={24} /> : 'Cancelar'}
-          </button>
-          <button className="button colored" type="submit" disabled={loading}>
-            {loading ? <Loader size={24} /> : 'Cadastrar'}
-          </button>
-        </div>
-      </form>
+        </Modal>
+      )}
     </Container>
   )
 }

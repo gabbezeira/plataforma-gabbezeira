@@ -57,9 +57,17 @@ export const Container = styled.div`
       }
     }
 
+    .none-button {
+      display: block;
+    }
+
     .colored {
       background-color: var(--primary-color);
       border: none;
+
+      .text {
+        display: block;
+      }
 
       &:hover {
         background-color: var(--primary-color);
@@ -110,8 +118,16 @@ export const Container = styled.div`
         font-size: 0.75rem;
       }
 
-      .colored {
+      .none-button {
         display: none;
+      }
+
+      .colored {
+        padding: 0rem 0.5rem;
+
+        .text {
+          display: none;
+        }
       }
 
       .login {

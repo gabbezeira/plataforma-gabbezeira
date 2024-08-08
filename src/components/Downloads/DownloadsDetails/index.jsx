@@ -8,28 +8,22 @@ import axios from 'axios'
 import { Loader } from '../../Loader'
 
 export function DownloadDetails() {
-  const { numericId } = useParams() // Pegue o numericId da URL
-  const [download, setDownload] = useState(null) // Altere para um único item
+  const { slug } = useParams()
+  const [download, setDownload] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const fetchDownloads = async () => {
+    const fetchDownload = async () => {
       try {
         const response = await axios.get(
-          'https://plataforma-api.vercel.app/files',
+          `https://plataforma-api.vercel.app/files/${slug}`,
         )
-        if (Array.isArray(response.data)) {
-          const selectedDownload = response.data.find(
-            (item) => item.numericId === parseInt(numericId, 10),
-          )
-          if (selectedDownload) {
-            setDownload(selectedDownload)
-          } else {
-            throw new Error('Download não encontrado')
-          }
+
+        if (response.data) {
+          setDownload(response.data)
         } else {
-          throw new Error('Resposta inesperada da API')
+          throw new Error('Download não encontrado')
         }
       } catch (err) {
         setError('Erro ao carregar o arquivo')
@@ -38,8 +32,8 @@ export function DownloadDetails() {
       }
     }
 
-    fetchDownloads()
-  }, [numericId])
+    fetchDownload()
+  }, [slug])
 
   if (loading) {
     return <Loader />

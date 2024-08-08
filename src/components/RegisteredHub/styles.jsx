@@ -66,10 +66,12 @@ export const Container = styled.div`
   }
 
   @media (max-width: 640px) {
-    .contact-area {
+    .hub-area {
+      width: 100%;
       flex-direction: column;
 
-      .social-media {
+      .hub-button {
+        text-align: center;
         gap: 0.625rem;
         width: 100%;
         padding: 0.875rem;
@@ -82,7 +84,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 2559px) {
-    .contact-area {
+    .hub-area {
       width: 60%;
     }
   }

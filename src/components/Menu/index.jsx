@@ -10,10 +10,15 @@ export function Menu() {
 
   return (
     <Container>
-      <img className="menu-logo" src={Logo} alt="Logo Gabbezeira" />
+      <Link to="/">
+        <img className="menu-logo" src={Logo} alt="Logo Gabbezeira" />
+      </Link>
       <nav className="menu-items">
         {signed ? (
           <>
+            <Link className="button" to="/painel">
+              <p>Painel</p>
+            </Link>
             <Link className="button" to="/register-hub">
               <p>Cadastrar</p>
             </Link>
@@ -22,7 +27,7 @@ export function Menu() {
             </Link>
             <Link className="button colored" onClick={logOut}>
               <LogOut className="icon" />
-              <p>Sair</p>
+              <p className="text">Sair</p>
             </Link>
           </>
         ) : (
@@ -37,7 +42,7 @@ export function Menu() {
               Contato
             </Link>
             <Link
-              className="button colored"
+              className="button colored none-button"
               to="https://youtube.com/@gabbezeiratech"
               target="_blank"
             >

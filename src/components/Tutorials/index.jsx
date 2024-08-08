@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Container } from './styles'
 import { Items } from './Items'
-import { NotFound } from '../'
+import { NotFound, Pagination } from '../'
 import axios from 'axios'
 import { Loader } from '../Loader'
 
@@ -16,6 +16,8 @@ export function Tutorials() {
   const [videos, setVideos] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 3
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -23,7 +25,6 @@ export function Tutorials() {
         const response = await axios.get(
           'https://plataforma-api.vercel.app/videos',
         )
-        console.log('API Response:', response.data) // Log da resposta da API
         if (Array.isArray(response.data)) {
           setVideos(response.data)
         } else {
@@ -31,7 +32,6 @@ export function Tutorials() {
         }
       } catch (err) {
         setError('Erro ao carregar vídeos')
-        console.error('Error fetching videos:', err) // Log do erro
       } finally {
         setLoading(false)
       }
@@ -48,21 +48,32 @@ export function Tutorials() {
     return <div>{error}</div>
   }
 
+  const indexOfLastVideo = currentPage * itemsPerPage
+  const indexOfFirstVideo = indexOfLastVideo - itemsPerPage
+  const currentVideos = videos.slice(indexOfFirstVideo, indexOfLastVideo)
+
   return (
     <Container>
-      {videos.length > 0 ? (
-        videos.map((video) => (
-          <div key={video.numericId}>
-            <Items
-              videoThumb={video.thumb}
-              videoTitle={video.title}
-              videoDescription={video.description}
-              videoUpload={convertFirestoreTimestamp(video.upload)} // Convertendo o timestamp
-              videoLink={video.link}
-              videoFiles={video.files}
-            />
-          </div>
-        ))
+      {currentVideos.length > 0 ? (
+        <>
+          {currentVideos.map((video) => (
+            <div key={video.numericId}>
+              <Items
+                videoThumb={video.thumb}
+                videoTitle={video.title}
+                videoDescription={video.description}
+                videoUpload={convertFirestoreTimestamp(video.upload)}
+                videoLink={video.link}
+                videoFiles={video.files}
+              />
+            </div>
+          ))}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(videos.length / itemsPerPage)}
+            onPageChange={setCurrentPage}
+          />
+        </>
       ) : (
         <NotFound
           NotFoundDescription="Não existem tutoriais cadastrados"

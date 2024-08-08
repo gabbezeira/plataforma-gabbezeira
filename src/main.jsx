@@ -15,6 +15,7 @@ import { DownloadDetails } from './components'
 
 import { RegisterPainel } from './pages/RegisterHub'
 import { RegistedPainel } from './pages/RegisteredHub'
+import { PainelPage } from './pages/Painel'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
         element: <DownloadPage />,
       },
       {
-        path: 'downloads/:numericId',
+        path: 'downloads/:slug',
         element: <DownloadDetails />,
       },
       {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <RegistedPainel />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: 'painel',
+        element: (
+          <PrivateRoute>
+            <PainelPage />
           </PrivateRoute>
         ),
       },

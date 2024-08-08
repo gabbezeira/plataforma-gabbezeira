@@ -29,16 +29,15 @@ export function Login() {
     try {
       await signIn(data)
     } catch (error) {
-      console.error('Login failed:', error)
       showSnackbar(
         'Falha ao realizar login. Verifique suas credenciais.',
-        'erro',
+        'error',
       )
     }
   }
 
   if (signed) {
-    return <Navigate to="/register-hub" />
+    return <Navigate to="/painel" />
   }
 
   return (

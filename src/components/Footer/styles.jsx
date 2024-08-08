@@ -26,5 +26,9 @@ export const Container = styled.div`
 
   @media (max-width: 640px) {
     text-align: center;
+
+    .copy-text {
+      font-size: 0.75rem;
+    }
   }
 `

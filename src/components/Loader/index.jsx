@@ -4,8 +4,6 @@ import { Container } from './styles'
 
 export const Loader = ({ size = 48 }) => (
   <Container>
-    <div className="spinner">
-      <LoaderCircle style={{ width: size, height: size }} />
-    </div>
+    <LoaderCircle className="spinner" style={{ width: size, height: size }} />
   </Container>
 )

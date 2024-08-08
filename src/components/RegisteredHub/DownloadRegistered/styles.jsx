@@ -4,149 +4,97 @@ import '../../../styles/index.css'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 1.75rem;
-  width: 100%;
+  gap: 1.5rem;
+  align-items: center;
 
-  .title {
-    color: var(--white-color-00);
-    font-size: 1.75rem;
-    font-weight: 500;
-  }
+  min-height: auto;
+  width: 50rem;
 
-  .form {
+  .download-area {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
 
-    width: 52rem;
-    height: auto;
+    width: 100%;
+    gap: 2rem;
 
-    gap: 2.5rem;
-    padding: 0rem;
-
-    .form-inputs {
+    .search {
       display: flex;
+      align-items: center;
       justify-content: flex-start;
-      align-items: flex-start;
-      flex-direction: column;
+      padding: 0rem 1rem;
+      gap: 1rem;
 
       width: 100%;
+      height: 3.5rem;
 
-      gap: 1.25rem;
+      background-color: var(--black-color-00);
+      border: 0.0313rem solid var(--stroke-color);
+      border-radius: 0.75rem;
 
-      .duo-section {
-        display: flex;
-        flex-direction: row;
-        gap: 30px;
+      transition: all 0.2s;
+      outline: none;
 
-        width: 100%;
+      &:hover {
+        border: 0.0625rem solid var(--primary-color);
       }
 
-      .input-area {
-        display: flex;
-        flex-direction: column;
+      .icon {
+        color: var(--white-color-00);
+      }
+
+      .search-input {
         width: 100%;
-        gap: 0.5rem;
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        border-radius: 0.625rem;
 
-        .label {
-          font-size: 0.875rem;
-          font-weight: 500;
+        font-size: 1.125rem;
+        color: var(--white-color-00);
+        outline: none;
+
+        &::placeholder {
           color: var(--white-color-00);
+          opacity: 0.3;
+          font-size: 1rem;
+          font-weight: 300;
         }
 
-        .input-box {
-          height: auto;
-          padding: 1rem 0.875rem;
-
-          background-color: var(--black-color-01);
-          color: var(--white-color-01);
-
-          border: 0.0625rem solid var(--stroke-color);
-          border-radius: 0.25rem;
-          outline: none;
-
-          transition: all 0.2s;
-
-          &:focus {
-            border: 0.0625rem solid var(--primary-color);
-          }
-
-          &::placeholder {
-            font-size: 0.875rem;
-            color: var(--white-color-01);
-            opacity: 0.8;
-          }
-        }
-
-        .text-area-box {
-          height: 8.125rem;
-          padding: 1rem 0.875rem;
-
-          background-color: var(--black-color-01);
-          color: var(--white-color-01);
-
-          border: 0.0625rem solid var(--stroke-color);
-          border-radius: 0.25rem;
-          outline: none;
-
-          transition: all 0.2s;
-
-          resize: none;
-
-          &:focus {
-            border: 0.0625rem solid var(--primary-color);
-          }
-
-          &::placeholder {
-            font-size: 0.875rem;
-            color: var(--white-color-01);
-            opacity: 0.8;
-          }
+        &::-webkit-search-cancel-button {
+          display: none;
         }
       }
     }
 
-    .form-button {
+    .item {
       display: flex;
-      position: relative;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
 
-      margin-top: 0.5rem;
-      width: 60%;
-      height: 3.5rem;
+      gap: 1.25rem;
 
-      background-color: var(--primary-color-opacity);
+      width: 100%;
+      height: 100%;
+    }
+  }
 
-      border: 1px solid var(--primary-color);
-      border-radius: 0.25rem;
+  .confirm-modal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
 
-      color: var(--white-color-00);
+    .title {
       font-size: 1rem;
-      font-weight: 500;
+      color: var(--white-color-00);
+    }
 
-      transition: all 0.4s;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.04);
-      }
-
-      .spinner {
-        animation: spin 1s linear infinite;
-
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-      }
+    .image {
+      width: 8.25rem;
+      height: auto;
     }
 
     .buttons {
@@ -171,7 +119,7 @@ export const Container = styled.div`
         font-weight: 600;
         color: var(--white-color-00);
 
-        width: 40%;
+        width: 50%;
         height: 3.5rem;
 
         background-color: var(--stroke-color);
@@ -195,6 +143,20 @@ export const Container = styled.div`
           transform: scale(1.04);
         }
       }
+    }
+  }
+
+  @media (max-width: 640px) {
+    width: 17.5rem;
+
+    .confirm-modal {
+      width: 17.5rem;
+    }
+  }
+
+  @media (min-width: 2559px) {
+    .download-area {
+      width: 60%;
     }
   }
 `

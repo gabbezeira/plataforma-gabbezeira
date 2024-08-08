@@ -19,15 +19,15 @@ export const AuthProvider = ({ children }) => {
         try {
           setUser(JSON.parse(storageUser))
           api.defaults.headers.common.Authorization = `Bearer ${storageToken}`
-        } catch (error) {
-          console.error('Error parsing user data:', error.message)
+        } catch (err) {
+          showSnackbar(`Error parsing user data: ${err.message}`, 'error')
           localStorage.removeItem('@Auth:user')
           localStorage.removeItem('@Auth:token')
         }
       }
     }
     loadingStoreData()
-  }, [])
+  }, [showSnackbar])
 
   const signIn = async ({ email, password }) => {
     setLoading(true)

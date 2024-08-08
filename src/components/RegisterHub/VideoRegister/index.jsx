@@ -28,7 +28,7 @@ export function VideoRegister({ onClose }) {
       showSnackbar('Vídeo Cadastrado!', 'success')
       onClose()
     } catch (error) {
-      showSnackbar('Erro ao cadastrar vídeo:', error, 'erro')
+      showSnackbar('Erro ao cadastrar vídeo:', error, 'error')
     }
   }
 

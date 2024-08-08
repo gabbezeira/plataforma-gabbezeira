@@ -1,95 +1,162 @@
+import { useEffect, useState, useContext } from 'react'
 import { Container } from './styles'
-import { useContext, useState, useEffect } from 'react'
-import { AuthContext } from '../../../context/AuthContext'
+import { Items } from './DownloadItems'
+import { Search } from 'lucide-react'
+import { Pagination, NotFound, Modal } from '../../'
+import axios from 'axios'
 import { Loader } from '../../Loader'
-import { api } from '../../../services/api'
 import { NotificationContext } from '../../../context/NotificationContext'
+import DeleteImage from '../../../assets/Error/delete.svg'
 
-export function DownloadRegistered({ onClose }) {
-  const { loading } = useContext(AuthContext)
-  const [title, setTitle] = useState('')
-  const [image, setImage] = useState('')
-  const [link, setLink] = useState('')
-  const [description, setDescription] = useState('')
+export function DownloadRegistered() {
+  const [search, setSearch] = useState('')
+  const [downloads, setDownloads] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedDownloadId, setSelectedDownloadId] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const { showSnackbar, snackbar } = useContext(NotificationContext)
-  const [isSnackbarActive, setIsSnackbarActive] = useState(false)
+  const { showSnackbar } = useContext(NotificationContext)
+  const itemsPerPage = 3
 
   useEffect(() => {
-    setIsSnackbarActive(snackbar.show)
-  }, [snackbar])
+    const fetchDownloads = async () => {
+      try {
+        const response = await axios.get(
+          'https://plataforma-api.vercel.app/files',
+        )
+        if (Array.isArray(response.data)) {
+          setDownloads(response.data)
+        } else {
+          throw new Error('Resposta inesperada da API')
+        }
+      } catch (err) {
+        setError('Erro ao carregar arquivos')
+      } finally {
+        setLoading(false)
+      }
+    }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const data = { title, image, link, description }
+    fetchDownloads()
+  }, [])
+
+  const handleDeleteClick = (id) => {
+    setSelectedDownloadId(id)
+    setIsModalOpen(true)
+  }
+
+  const handleConfirmDelete = async () => {
     try {
-      await api.post('/files', data)
-      showSnackbar('Arquivo Cadastrado!', 'success')
-      onClose()
-    } catch (error) {
-      showSnackbar('Erro ao cadastrar arquivo:', error, 'erro')
+      const token = localStorage.getItem('@Autoken')
+      await axios.delete(
+        `https://plataforma-api.vercel.app/files/${selectedDownloadId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      showSnackbar('Arquivo Deletado!', 'success')
+      setDownloads(
+        downloads.filter((item) => item.numericId !== selectedDownloadId),
+      )
+    } catch (err) {
+      showSnackbar(`Erro ao deletar arquivo: ${err.message}`, 'error')
+    } finally {
+      setIsModalOpen(false)
+      setSelectedDownloadId(null)
     }
   }
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedDownloadId(null)
+  }
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
+  const filteredDownloads = Array.isArray(downloads)
+    ? downloads.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase()),
+      )
+    : []
+
+  const totalPages = Math.ceil(filteredDownloads.length / itemsPerPage)
+  const currentDownloads = filteredDownloads.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  )
+
   return (
     <Container>
-      <h1 className="title">Cadastao</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-inputs">
-          <div className="duo-section">
-            <div className="input-area">
-              <h1 className="label">Nome do arquivo</h1>
-              <input
-                className="input-box"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </div>
-            <div className="input-area">
-              <h1 className="label">Ícone do arquivo</h1>
-              <input
-                className="input-box"
-                type="text"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="input-area">
-            <h1 className="label">Link do arquivo</h1>
-            <input
-              className="input-box"
-              type="text"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-            />
-          </div>
-
-          <div className="input-area">
-            <h1 className="label">Descrição completa</h1>
-            <textarea
-              className="text-area-box"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
+      <div className="download-area">
+        <div className="search">
+          <Search className="icon" />
+          <input
+            className="search-input"
+            type="search"
+            placeholder="Digite o nome do programa"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
-        <div className="buttons">
-          <button
-            className="button"
-            type="button"
-            onClick={onClose}
-            disabled={loading || isSnackbarActive}
-          >
-            {loading || isSnackbarActive ? <Loader size={24} /> : 'Cancelar'}
-          </button>
-          <button className="button colored" type="submit" disabled={loading}>
-            {loading ? <Loader size={24} /> : 'Cadastrar'}
-          </button>
+        <div className="item">
+          {loading ? (
+            <Loader />
+          ) : error ? (
+            <p>{error}</p>
+          ) : currentDownloads.length > 0 ? (
+            currentDownloads
+              .sort((a, b) => new Date(b.upload) - new Date(a.upload))
+              .map((item) => (
+                <div key={item.numericId}>
+                  <Items
+                    downloadId={item.numericId}
+                    downloadImage={item.image}
+                    downloadTitle={item.title}
+                    downloadSlug={item.slug}
+                    onDelete={handleDeleteClick}
+                  />
+                </div>
+              ))
+          ) : (
+            <NotFound
+              NotFoundDescription="Programa não encontrado"
+              NotFoundImage="download"
+            />
+          )}
         </div>
-      </form>
+      </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+
+      {isModalOpen && (
+        <Modal onClose={handleCloseModal}>
+          <div className="confirm-modal">
+            <p className="title">Tem certeza que deseja deletar este item?</p>
+            <img
+              className="image"
+              src={DeleteImage}
+              alt="Imagem de um rapaz jogando um arquivo no lixo"
+            />
+            <div className="buttons">
+              <button className="button colored" onClick={handleConfirmDelete}>
+                Deletar
+              </button>
+              <button className="button" onClick={handleCloseModal}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </Container>
   )
 }

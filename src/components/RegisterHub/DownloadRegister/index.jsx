@@ -26,8 +26,8 @@ export function DownloadRegister({ onClose }) {
       await api.post('/files', data)
       showSnackbar('Arquivo Cadastrado!', 'success')
       onClose()
-    } catch (error) {
-      showSnackbar('Erro ao cadastrar arquivo:', error, 'erro')
+    } catch (err) {
+      showSnackbar(`Erro ao cadastrar arquivo: ${err.message}`, 'error')
     }
   }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container } from './styles'
 import { Items } from './Items'
 import { Search } from 'lucide-react'
-import { NotFound } from '../'
+import { NotFound, Pagination } from '../'
 import axios from 'axios'
 import { Loader } from '../Loader'
 
@@ -11,6 +11,9 @@ export function Downloads() {
   const [downloads, setDownloads] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const itemsPerPage = 4
 
   useEffect(() => {
     const fetchDownloads = async () => {
@@ -33,11 +36,22 @@ export function Downloads() {
     fetchDownloads()
   }, [])
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page)
+  }
+
   const filteredDownloads = Array.isArray(downloads)
     ? downloads.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase()),
       )
     : []
+
+  const totalPages = Math.ceil(filteredDownloads.length / itemsPerPage)
+
+  const currentDownloads = filteredDownloads.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  )
 
   return (
     <Container>
@@ -57,8 +71,8 @@ export function Downloads() {
             <Loader />
           ) : error ? (
             <p>{error}</p>
-          ) : filteredDownloads.length > 0 ? (
-            filteredDownloads
+          ) : currentDownloads.length > 0 ? (
+            currentDownloads
               .sort((a, b) => new Date(b.upload) - new Date(a.upload))
               .map((item) => (
                 <div key={item.numericId}>
@@ -67,6 +81,7 @@ export function Downloads() {
                     downloadImage={item.image}
                     downloadTitle={item.title}
                     downloadLink={item.link}
+                    downloadSlug={item.slug}
                     showDownloadDetails={false}
                     showConfetti={false}
                   />
@@ -79,6 +94,11 @@ export function Downloads() {
             />
           )}
         </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     </Container>
   )

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Container } from './styles'
 import { Link } from 'react-router-dom'
-import { Video, FolderArchive } from 'lucide-react'
+import { MonitorPlay, Folders } from 'lucide-react'
 import { DownloadRegistered } from './DownloadRegistered'
 import { VideoRegistered } from './VideoRegistered'
 import { Modal } from '../Modal'
@@ -25,7 +25,7 @@ export function RegisteredHub() {
           to="/registered-hub"
           onClick={() => openModal(<VideoRegistered onClose={closeModal} />)}
         >
-          <Video className="icon" />
+          <MonitorPlay className="icon" />
           <p className="text">Vídeos Cadastrados</p>
         </Link>
         <Link
@@ -33,7 +33,7 @@ export function RegisteredHub() {
           to="/registered-hub"
           onClick={() => openModal(<DownloadRegistered onClose={closeModal} />)}
         >
-          <FolderArchive className="icon" />
+          <Folders className="icon" />
           <p className="text">Downloads Cadastrados</p>
         </Link>
       </div>

@@ -8,12 +8,13 @@ export const Container = styled.div`
   width: 100% !important;
   height: auto;
 
-  .hub-area {
+  .painel-area {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-wrap: wrap;
 
-    width: 75%;
+    width: 70%;
+
     height: auto;
 
     padding: 2rem;
@@ -23,7 +24,7 @@ export const Container = styled.div`
     border: 0.0313rem solid var(--stroke-color);
     border-radius: 0.9375rem;
 
-    .hub-button {
+    .painel-button {
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -66,11 +67,11 @@ export const Container = styled.div`
   }
 
   @media (max-width: 640px) {
-    .hub-area {
+    .painel-area {
       width: 100%;
       flex-direction: column;
 
-      .hub-button {
+      .painel-button {
         text-align: center;
         gap: 0.625rem;
         width: 100%;
@@ -84,7 +85,7 @@ export const Container = styled.div`
   }
 
   @media (min-width: 2559px) {
-    .hub-area {
+    .painel-area {
       width: 60%;
     }
   }
