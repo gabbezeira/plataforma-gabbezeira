@@ -48,7 +48,7 @@ export function DownloadRegistered() {
 
   const handleConfirmDelete = async () => {
     try {
-      const token = localStorage.getItem('@Autoken')
+      const token = localStorage.getItem('@Auth:token')
       await axios.delete(
         `https://plataforma-api.vercel.app/files/${selectedDownloadId}`,
         {
