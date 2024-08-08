@@ -58,7 +58,6 @@ export const Container = styled.div`
     }
 
     .none-button {
-      display: block;
     }
 
     .colored {
