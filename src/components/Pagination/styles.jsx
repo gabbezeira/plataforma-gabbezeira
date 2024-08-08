@@ -11,6 +11,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 
     width: 1.875rem;
     height: 1.875rem;
@@ -51,6 +52,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 
     width: 1.5rem;
     height: 1.5rem;

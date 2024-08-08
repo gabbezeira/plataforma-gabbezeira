@@ -11,5 +11,6 @@ export const Container = styled.div`
   .error-image {
     width: auto;
     height: 13rem;
+    user-select: none;
   }
 `

@@ -16,6 +16,7 @@ export const Container = styled.div`
 
   background-color: var(--black-color-00);
   border: 0.0313rem solid var(--stroke-color);
+  user-select: none;
 
   .menu-logo {
     width: auto;
@@ -32,6 +33,7 @@ export const Container = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      user-select: none;
 
       gap: 0.5rem;
       padding: 0rem 1rem;
@@ -91,6 +93,7 @@ export const Container = styled.div`
         width: 1.25rem;
         height: 1.25rem;
         color: var(--white-color-00);
+        user-select: none;
       }
     }
   }

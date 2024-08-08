@@ -28,6 +28,7 @@ export const ModalContainer = styled.div`
   .close-button {
     position: absolute;
     color: var(--solid-stroke-color);
+    user-select: none;
 
     top: 1rem;
     right: 1rem;

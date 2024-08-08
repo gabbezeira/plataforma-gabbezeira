@@ -73,6 +73,7 @@ export const Container = styled.div`
     .item {
       display: flex;
       flex-direction: column;
+      user-select: none;
 
       gap: 1.25rem;
 
@@ -96,12 +97,14 @@ export const Container = styled.div`
     .image {
       width: 8.25rem;
       height: auto;
+      user-select: none;
     }
 
     .buttons {
       display: flex;
       justify-content: center;
       flex-direction: row;
+      user-select: none;
 
       gap: 18px;
       width: 100%;

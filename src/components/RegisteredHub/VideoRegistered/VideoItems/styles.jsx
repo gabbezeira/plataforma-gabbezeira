@@ -27,6 +27,7 @@ export const Container = styled.div`
     .thumb {
       width: 5rem;
       height: 3.125rem;
+      user-select: none;
 
       border-radius: 0.375rem;
       background-size: cover;
@@ -52,6 +53,7 @@ export const Container = styled.div`
     .button {
       display: flex;
       align-items: center;
+      user-select: none;
 
       width: auto;
       height: 2.5rem;
@@ -77,6 +79,7 @@ export const Container = styled.div`
       .icon {
         width: 1.25rem;
         height: auto;
+        user-select: none;
       }
     }
   }
@@ -96,7 +99,9 @@ export const Container = styled.div`
       .thumb {
         width: 5rem;
         background-size: contain;
+        user-select: none;
       }
+
       .title {
         overflow: scroll;
         font-size: 0.875rem;
@@ -110,12 +115,14 @@ export const Container = styled.div`
         justify-content: center;
         align-items: center;
         padding: 0.375rem;
+        user-select: none;
 
         height: auto;
 
         .icon {
           width: 1rem;
           height: auto;
+          user-select: none;
         }
       }
     }

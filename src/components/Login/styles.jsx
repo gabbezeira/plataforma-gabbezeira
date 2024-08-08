@@ -76,6 +76,7 @@ export const Container = styled.div`
       position: relative;
       justify-content: center;
       align-items: center;
+      user-select: none;
 
       width: 100%;
       height: 3.5rem;

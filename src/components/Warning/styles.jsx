@@ -12,6 +12,7 @@ export const Container = styled.div`
     font-size: 0.875rem;
     font-weight: 300;
     color: var(--white-color-01);
+    user-select: none;
   }
 
   @media (max-width: 640px) {

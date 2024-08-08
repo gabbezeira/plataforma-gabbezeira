@@ -7,6 +7,7 @@ export const Container = styled.div`
   margin-top: 5rem;
   background-size: cover;
   background-position: center;
+  user-select: none;
 
   @media (max-width: 640px) {
     margin-top: 7.5rem;

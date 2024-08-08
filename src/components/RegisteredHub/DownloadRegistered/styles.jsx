@@ -43,6 +43,7 @@ export const Container = styled.div`
 
       .icon {
         color: var(--white-color-00);
+        user-select: none;
       }
 
       .search-input {
@@ -72,6 +73,7 @@ export const Container = styled.div`
     .item {
       display: flex;
       flex-direction: column;
+      user-select: none;
 
       gap: 1.25rem;
 
@@ -95,12 +97,14 @@ export const Container = styled.div`
     .image {
       width: 8.25rem;
       height: auto;
+      user-select: none;
     }
 
     .buttons {
       display: flex;
       justify-content: center;
       flex-direction: row;
+      user-select: none;
 
       gap: 18px;
       width: 100%;
@@ -109,6 +113,7 @@ export const Container = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        user-select: none;
 
         gap: 0.5rem;
         padding: 0rem 1rem;

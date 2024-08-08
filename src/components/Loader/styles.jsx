@@ -10,6 +10,7 @@ export const Container = styled.div`
     color: var(--white-color-00);
     display: inline-block;
     animation: spin 1s linear infinite;
+    user-select: none;
 
     @keyframes spin {
       0% {

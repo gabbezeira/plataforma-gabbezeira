@@ -121,6 +121,7 @@ export const Container = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        user-select: none;
 
         gap: 0.5rem;
         padding: 0rem 1rem;

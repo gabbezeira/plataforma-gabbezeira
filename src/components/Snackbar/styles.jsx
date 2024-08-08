@@ -28,6 +28,7 @@ export const SnackbarContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.75rem;
+  user-select: none;
 
   width: auto;
   height: auto;

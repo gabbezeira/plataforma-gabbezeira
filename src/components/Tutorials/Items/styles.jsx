@@ -15,6 +15,7 @@ export const Container = styled.div`
     width: 22.25rem;
     height: 12.5rem;
     border-radius: 0.875rem;
+    user-select: none;
 
     background-size: cover;
     background-position: center;
@@ -78,6 +79,7 @@ export const Container = styled.div`
         .watch-button {
           display: flex;
           align-items: center;
+          user-select: none;
 
           width: auto;
           height: 2.5rem;
@@ -104,6 +106,7 @@ export const Container = styled.div`
         .files-button {
           display: flex;
           align-items: center;
+          user-select: none;
 
           width: auto;
           height: 2.5rem;

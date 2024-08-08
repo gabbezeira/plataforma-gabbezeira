@@ -27,6 +27,7 @@ export const Container = styled.div`
     .thumb {
       width: 3.125rem;
       height: 3.125rem;
+      user-select: none;
 
       background-size: cover;
       background-position: center;
@@ -51,6 +52,7 @@ export const Container = styled.div`
     .button {
       display: flex;
       align-items: center;
+      user-select: none;
 
       width: auto;
       height: 2.5rem;
@@ -76,6 +78,7 @@ export const Container = styled.div`
       .icon {
         width: 1rem;
         height: auto;
+        user-select: none;
       }
     }
 

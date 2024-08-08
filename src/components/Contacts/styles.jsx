@@ -27,6 +27,7 @@ export const Container = styled.div`
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      user-select: none;
 
       width: 100%;
       height: 4.375rem;

@@ -28,6 +28,7 @@ export const Container = styled.div`
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      user-select: none;
 
       width: 100%;
       height: 4.375rem;
@@ -50,11 +51,13 @@ export const Container = styled.div`
 
       .icon {
         color: var(--white-color-01);
+        user-select: none;
       }
 
       .image {
         width: auto;
         height: 1.875rem;
+        user-select: none;
       }
 
       .text {

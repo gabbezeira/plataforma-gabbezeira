@@ -15,6 +15,7 @@ export const Container = styled.div`
   .notfound-image {
     width: auto;
     height: 13rem;
+    user-select: none;
   }
 
   .notfound-text {
