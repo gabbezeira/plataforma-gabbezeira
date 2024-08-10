@@ -70,7 +70,7 @@ export function Downloads() {
           {loading ? (
             <Loader />
           ) : error ? (
-            <p>{error}</p>
+            <NotFound NotFoundDescription={error} NotFoundImage="download" />
           ) : currentDownloads.length > 0 ? (
             currentDownloads
               .sort((a, b) => new Date(b.upload) - new Date(a.upload))

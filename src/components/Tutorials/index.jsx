@@ -45,7 +45,7 @@ export function Tutorials() {
   }
 
   if (error) {
-    return <div>{error}</div>
+    return <NotFound NotFoundDescription={error} NotFoundImage="video" />
   }
 
   const indexOfLastVideo = currentPage * itemsPerPage

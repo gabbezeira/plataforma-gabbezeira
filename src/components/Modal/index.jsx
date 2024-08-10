@@ -1,4 +1,3 @@
-import React from 'react'
 import { ModalContainer } from './styles'
 import { X } from 'lucide-react'
 

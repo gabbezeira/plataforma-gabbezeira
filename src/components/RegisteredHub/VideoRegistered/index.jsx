@@ -8,6 +8,7 @@ import axios from 'axios'
 import { Loader } from '../../Loader'
 import { NotificationContext } from '../../../context/NotificationContext'
 import DeleteImage from '../../../assets/Error/delete.svg'
+import { ConfirmModal } from '../../Modal/ConfirmModal'
 
 export function VideoRegistered() {
   const [search, setSearch] = useState('')
@@ -107,7 +108,7 @@ export function VideoRegistered() {
           {loading ? (
             <Loader />
           ) : error ? (
-            <p>{error}</p>
+            <NotFound NotFoundDescription={error} NotFoundImage="download" />
           ) : currentVideos.length > 0 ? (
             currentVideos
               .sort((a, b) => new Date(b.upload) - new Date(a.upload))
@@ -138,22 +139,11 @@ export function VideoRegistered() {
 
       {isModalOpen && (
         <Modal onClose={handleCloseModal}>
-          <div className="confirm-modal">
-            <p className="title">Tem certeza que deseja deletar este item?</p>
-            <img
-              className="image"
-              src={DeleteImage}
-              alt="Imagem de um rapaz jogando um arquivo no lixo"
-            />
-            <div className="buttons">
-              <button className="button colored" onClick={handleConfirmDelete}>
-                Deletar
-              </button>
-              <button className="button" onClick={handleCloseModal}>
-                Cancelar
-              </button>
-            </div>
-          </div>
+          <ConfirmModal
+            DeleteImage={DeleteImage}
+            onDelete={handleConfirmDelete}
+            onClose={handleCloseModal}
+          />
         </Modal>
       )}
     </Container>
