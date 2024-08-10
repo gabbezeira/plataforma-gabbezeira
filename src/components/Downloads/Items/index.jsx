@@ -14,7 +14,7 @@ export function Items(props) {
 
     setTimeout(() => {
       window.location.href = props.downloadLink
-    }, 300)
+    }, 2000)
   }
 
   return (

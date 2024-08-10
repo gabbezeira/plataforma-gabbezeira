@@ -1,6 +1,6 @@
 import { Container } from './styles'
 import { Link } from 'react-router-dom'
-import { Trash2 } from 'lucide-react'
+import { Pencil, Trash2 } from 'lucide-react'
 
 export function Items(props) {
   return (
@@ -10,6 +10,9 @@ export function Items(props) {
       </div>
 
       <div className="right-content">
+        <Link className="button outline" onClick={props.handleUpdateLink}>
+          <Pencil className="icon" />
+        </Link>
         <Link className="button" onClick={() => props.onDelete(props.videoId)}>
           <Trash2 className="icon" />
         </Link>

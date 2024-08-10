@@ -77,9 +77,19 @@ export const Container = styled.div`
       }
 
       .icon {
-        width: 1.25rem;
+        width: 1rem;
         height: auto;
         user-select: none;
+      }
+    }
+
+    .outline {
+      color: var(--white-color-00);
+      background-color: var(--primary-color-opacity);
+      border: 0.0625rem solid var(--primary-color);
+
+      &:hover {
+        transform: scale(1.04);
       }
     }
   }
@@ -123,6 +133,16 @@ export const Container = styled.div`
           width: 1rem;
           height: auto;
           user-select: none;
+        }
+      }
+
+      .outline {
+        color: var(--white-color-00);
+        background-color: var(--primary-color-opacity);
+        border: 0.0625rem solid var(--primary-color);
+
+        &:hover {
+          transform: scale(1.04);
         }
       }
     }
