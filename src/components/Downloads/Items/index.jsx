@@ -30,8 +30,7 @@ export function Items(props) {
       <div className="right-content">
         <Link
           className="download-button"
-          to={props.downloadLink}
-          target="_blank"
+          to={`/downloads/${props.downloadSlug}`}
           onClick={props.showConfetti ? handleDownloadButtonClick : null}
         >
           <ArrowDownToLine className="icon" />

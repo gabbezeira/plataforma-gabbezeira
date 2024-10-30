@@ -11,11 +11,10 @@ export const Body = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  flex-grow: 1;
 
   padding: 3.125rem 9.375rem;
   gap: 3.125rem;
-
-  flex-grow: 1;
 
   @media (max-width: 640px) {
     gap: 2rem;

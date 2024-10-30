@@ -11,7 +11,7 @@ import { Error } from './pages/Error'
 import { DownloadPage } from './pages/DownloadPage'
 import { LoginPage } from './pages/LoginPage'
 import { PrivateRoute } from './routes/privateRoutes'
-import { DownloadDetails } from './components'
+import { DownloadDetailsPage } from './pages/DownloadDetails'
 
 import { RegisterPainel } from './pages/RegisterHub'
 import { RegistedPainel } from './pages/RegisteredHub'
@@ -30,10 +30,6 @@ const router = createBrowserRouter([
       {
         path: 'downloads',
         element: <DownloadPage />,
-      },
-      {
-        path: 'downloads/:slug',
-        element: <DownloadDetails />,
       },
       {
         path: 'contact',
@@ -68,6 +64,11 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: 'downloads/:slug',
+    element: <DownloadDetailsPage />,
+    errorElement: <Error />,
   },
 ])
 

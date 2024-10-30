@@ -1,15 +1,14 @@
 import React from 'react'
-import { Menu, Banner, Footer, Errors, Title } from '../components'
+import { Menu, Footer, DownloadDetails, Banner } from '../components'
 import { Body, PageWrapper } from '../styles/styles'
 
-export function Error() {
+export function DownloadDetailsPage() {
   return (
     <PageWrapper>
       <Menu />
       <Banner />
       <Body>
-        <Errors />
-        <Title title="Erro 404" subtitle="A página não foi encontrada" />
+        <DownloadDetails />
       </Body>
       <Footer />
     </PageWrapper>
