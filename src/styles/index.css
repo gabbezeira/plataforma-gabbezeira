@@ -11,6 +11,8 @@
   /** Brand Colors **/
   --primary-color: #673CCA;
   --primary-color-opacity: rgba(103, 60, 202, .15);
+  --golden-color: #8a58ff;
+  --golden-color-opacity: rgba(151, 107, 255, 0.15);
 
   /** Black Colors **/
   --black-color-00: #0E0E11;

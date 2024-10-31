@@ -48,7 +48,7 @@ export const Container = styled.div`
 
       background-color: var(--black-color-00);
       border: 0.0625rem solid var(--stroke-color);
-      border-radius: 0.3125rem;
+      border-radius: 0.25rem;
 
       transition: all 0.2s;
       cursor: pointer;

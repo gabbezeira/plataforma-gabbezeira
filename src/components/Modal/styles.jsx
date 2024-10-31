@@ -34,4 +34,10 @@ export const ModalContainer = styled.div`
     right: 1rem;
     cursor: pointer;
   }
+
+  @media (max-width: 640px) {
+    .modal-content {
+      padding: 1rem;
+    }
+  }
 `
