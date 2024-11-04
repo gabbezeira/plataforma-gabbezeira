@@ -1,4 +1,4 @@
-import { Menu, Banner, Footer } from './components'
+import { Menu, Banner, Footer, DonateButton } from './components'
 import { Body, PageWrapper } from './styles/styles'
 import { Outlet } from 'react-router-dom'
 
@@ -12,7 +12,7 @@ export default function App() {
       <Body>
         <Outlet />
       </Body>
-
+      <DonateButton />
       <Analytics />
       <Footer />
     </PageWrapper>
