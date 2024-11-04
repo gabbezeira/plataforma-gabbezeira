@@ -6,6 +6,7 @@ import { Warning } from '../../Warning'
 import { Container } from './styles'
 import axios from 'axios'
 import { Loader } from '../../Loader'
+import { DonateButton } from '../../Donate'
 
 export function DownloadDetails() {
   const { slug } = useParams()
@@ -62,6 +63,7 @@ export function DownloadDetails() {
           />
         </div>
       </Container>
+      <DonateButton />
       <Warning />
     </>
   )
