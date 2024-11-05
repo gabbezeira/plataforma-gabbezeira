@@ -1,55 +1,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  font-family: "Poppins", sans-serif;
+	font-family: "Poppins", sans-serif;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-  /** Brand Colors **/
-  --primary-color: #673CCA;
-  --primary-color-opacity: rgba(103, 60, 202, .15);
-  --golden-color: #8a58ff;
-  --golden-color-opacity: rgba(151, 107, 255, 0.15);
+	/** Brand Colors **/
+	--primary-color: #673cca;
+	--primary-color-opacity: rgba(103, 60, 202, 0.15);
+	--golden-color: #8a58ff;
+	--golden-color-opacity: rgba(151, 107, 255, 0.15);
 
-  /** Black Colors **/
-  --black-color-00: #0E0E11;
-  --black-color-01: #121214;
-  --black-color-02: #141316;
-  --black-color-opacity: rgba(14, 14, 17, .8);
+	/** Black Colors **/
+	--black-color-00: #0e0e11;
+	--black-color-01: #121214;
+	--black-color-02: #141316;
+	--black-color-opacity: rgba(14, 14, 17, 0.8);
 
-  /** White Colors **/
-  --white-color-00: #E1E1E6;
-  --white-color-01: #F4F4F5;
+	/** White Colors **/
+	--white-color-00: #e1e1e6;
+	--white-color-01: #f4f4f5;
 
-  /** Stroke Colors **/
-  --stroke-color: rgba(225, 225, 230, 0.1);
-  --solid-stroke-color: #2c2c2c;
+	/** Stroke Colors **/
+	--stroke-color: rgba(225, 225, 230, 0.1);
+	--solid-stroke-color: #2c2c2c;
 
-  /** Alerts Colors **/
-  --alert-color: #D89E08;
-  --sip-alert: #b52222;
-  --beta-alert: #36D073;
-  --beta-alert-link: #2CF37B;
+	/** Alerts Colors **/
+	--alert-color: #d89e08;
+	--sip-alert: #b52222;
+	--beta-alert: #36d073;
+	--beta-alert-link: #2cf37b;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box !important;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box !important;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: var(--black-color-01);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+	font-family: "Poppins", sans-serif;
+	background-color: var(--black-color-01);
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 
-  ::selection {
-    background-color: var(--primary-color);
-    color: var(--white-color-01);
-  }
+	::selection {
+		background-color: var(--primary-color);
+		color: var(--white-color-01);
+	}
 }

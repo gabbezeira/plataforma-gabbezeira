@@ -18,66 +18,66 @@ import { RegistedPainel } from './pages/RegisteredHub'
 import { PainelPage } from './pages/Painel'
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: 'downloads',
-        element: <DownloadPage />,
-      },
-      {
-        path: 'contact',
-        element: <Contact />,
-      },
-      {
-        path: 'login',
-        element: <LoginPage />,
-      },
-      {
-        path: 'register-hub',
-        element: (
-          <PrivateRoute>
-            <RegisterPainel />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'registered-hub',
-        element: (
-          <PrivateRoute>
-            <RegistedPainel />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: 'painel',
-        element: (
-          <PrivateRoute>
-            <PainelPage />
-          </PrivateRoute>
-        ),
-      },
-    ],
-  },
-  {
-    path: 'downloads/:slug',
-    element: <DownloadDetailsPage />,
-    errorElement: <Error />,
-  },
+	{
+		path: '/',
+		element: <App />,
+		errorElement: <Error />,
+		children: [
+			{
+				path: '/',
+				element: <Home />,
+			},
+			{
+				path: 'downloads',
+				element: <DownloadPage />,
+			},
+			{
+				path: 'contact',
+				element: <Contact />,
+			},
+			{
+				path: 'login',
+				element: <LoginPage />,
+			},
+			{
+				path: 'register-hub',
+				element: (
+					<PrivateRoute>
+						<RegisterPainel />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: 'registered-hub',
+				element: (
+					<PrivateRoute>
+						<RegistedPainel />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: 'painel',
+				element: (
+					<PrivateRoute>
+						<PainelPage />
+					</PrivateRoute>
+				),
+			},
+		],
+	},
+	{
+		path: 'downloads/:slug',
+		element: <DownloadDetailsPage />,
+		errorElement: <Error />,
+	},
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <NotificationProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </NotificationProvider>
-  </React.StrictMode>,
+	<React.StrictMode>
+		<NotificationProvider>
+			<AuthProvider>
+				<RouterProvider router={router} />
+			</AuthProvider>
+		</NotificationProvider>
+	</React.StrictMode>,
 )

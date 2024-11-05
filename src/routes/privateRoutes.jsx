@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 
 export const PrivateRoute = ({ children }) => {
-  const { signed } = useContext(AuthContext)
+	const { signed } = useContext(AuthContext)
 
-  return signed ? children : <Navigate to="/login" />
+	return signed ? children : <Navigate to="/login" />
 }

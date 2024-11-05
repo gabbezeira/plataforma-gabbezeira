@@ -85,6 +85,7 @@ export const Container = styled.div`
           height: 2.5rem;
 
           padding: 0rem 0.9375rem;
+          white-space: nowrap;
 
           background-color: var(--primary-color-opacity);
           border: 0.0625rem solid var(--primary-color);
@@ -112,6 +113,7 @@ export const Container = styled.div`
           height: 2.5rem;
 
           padding: 0rem 0.9375rem;
+          white-space: nowrap;
 
           background-color: var(--primary-color);
           border-radius: 0.3125rem;
@@ -186,6 +188,7 @@ export const Container = styled.div`
             font-size: 0.75rem;
             align-items: center;
             justify-content: center;
+
           }
 
           .files-button {
