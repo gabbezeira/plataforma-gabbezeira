@@ -1,6 +1,6 @@
-import { Container } from './styles'
-import { Link } from 'react-router-dom'
 import { ArrowDownToLine } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Container } from './styles'
 
 export function Items(props) {
 	return (
@@ -9,7 +9,6 @@ export function Items(props) {
 				className="thumb"
 				style={{ backgroundImage: `url(${props.videoThumb})` }}
 			/>
-
 			<div className="side-card">
 				<div className="card-top">
 					<h1 className="title">{props.videoTitle}</h1>

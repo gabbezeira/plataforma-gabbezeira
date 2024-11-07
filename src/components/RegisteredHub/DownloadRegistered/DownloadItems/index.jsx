@@ -1,8 +1,8 @@
+import { Link as LinkIcon, Trash2 } from 'lucide-react'
 import { useContext } from 'react'
-import { Container } from './styles'
 import { Link } from 'react-router-dom'
-import { Trash2, Link as LinkIcon } from 'lucide-react'
 import { NotificationContext } from '../../../../context/NotificationContext'
+import { Container } from './styles'
 
 export function Items(props) {
 	const { showSnackbar } = useContext(NotificationContext)
