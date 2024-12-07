@@ -1,6 +1,6 @@
-import { Menu, Banner, Footer, DonateButton } from './components'
-import { Body, PageWrapper } from './styles/styles'
 import { Outlet } from 'react-router-dom'
+import { Banner, Footer, Menu } from './components'
+import { Body, PageWrapper } from './styles/styles'
 
 import { Analytics } from '@vercel/analytics/react'
 
@@ -12,7 +12,6 @@ export default function App() {
 			<Body>
 				<Outlet />
 			</Body>
-			<DonateButton />
 			<Analytics />
 			<Footer />
 		</PageWrapper>
