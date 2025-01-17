@@ -1,13 +1,11 @@
+<img src="src/assets/image-readme.png" alt="exemplo imagem">
+
 # Plataforma Gabbezeira
 
 Essa é a plataforma que desenvolvi para meu canal do youtube, ela conta com sistema de autenticação com JWT, alertas (snackbar), sistema de cadastro de contéudo, sistema de upload, URL amigáveis para as páginas dos programas, dentre diversas outras funcionalidades. O sistema tem API própria feita em node e o banco de dados é o firebase. Este é meu maior projeto até então, e fiz completamente sozinho.(https://gabbezeira.vercel.app)
 
-<img src="src/assets/image-readme.png" alt="exemplo imagem">
-<img src="src/assets/image-readme-2.png" alt="exemplo imagem">
-<img src="src/assets/image-readme-3.png" alt="exemplo imagem">
-
 ### Acessar
-[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://kadynn.com.br)
+[![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)](https://gabbezeira.vercel.app)
 
 ## 🔧 Tipo de Projeto
 
